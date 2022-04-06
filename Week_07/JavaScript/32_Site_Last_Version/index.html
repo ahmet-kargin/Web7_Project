@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/d764eb5db4.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div id="container">
+        <!--Ana kapsayıcı başlangıcı-->
+        <header>
+            <!--Üst bölüm başlangıcı-->
+            <div id="logo"><!--Logo başlangıcı-->
+                <h1>Wissen Akademie</h1>
+            </div>
+            <!--Logo bitişi-->
+            <div class="box">
+                <input type="text" id="search" placeholder="Ara...">
+            </div>
+            <nav>
+                <!--Menü başlangıcı-->
+                <div id="menu">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Lessons</a></li>
+                        <li><a href="#todoContainer">Todo List</a></li>
+                        <li><a href="#">About Me</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <!--Menü bitişi-->
+        </header>
+        <!--Üst bölüm bitişi-->
+        <div id="slider-container">
+            <div id="slider">
+                <div class="slide"><img src="https://picsum.photos/id/237/1250/500" alt=""></div>
+                <div class="slide"><img src="https://picsum.photos/id/137/1250/500" alt=""></div>
+                <div class="slide"><img src="https://picsum.photos/id/297/1250/500" alt=""></div>
+                <div class="slide"><img src="https://picsum.photos/id/230/1250/500" alt=""></div>
+                <div id="control">
+                    <a href="javascript:previous()">Önceki</a>
+                    <a href="javascript:next()">Sonraki</a>
+                </div>
+            </div>
+        </div>
+        <!--Orta bölüm başlangıcı-->
+        <section>
+            <!--Giriş kısmı başlangıcı-->
+                <div id="intro">
+                    <h1>Hoşgeldiniz</h1>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia quisquam iure dolores expedita neque, ipsam consequuntur pariatur deserunt ratione recusandae.</p>
+                    <button>Galeri</button>
+                </div>
+            <!--Giriş kısmı bitişi-->
+        </section>
+        <!--Orta bölüm bitişi-->
+        <!--ToDo başlangıcı-->
+        <div id="todoContainer">
+            <h1>Yapılacaklar Listesi</h1>
+            <div id="newTaskBox">
+                <div id="newTaskHeader"><b>Yeni Görev</b></div>
+                <div id="newTask">
+                    <input id="newTaskTextBox" placeholder="Yeni görev girin" type="text">
+                    <button id="newTaskButton">+</button>
+                </div>
+            </div>
+            <div id="taskListBox">
+                <div id="listHeader"><b>Görev Listesi</b>
+                    <button id="deleteAllButton">Temizle</button>
+                </div>
+     
+            </div>
+        </div>
+        <!--ToDo bitişi-->
+    </div>
+    <!--Ana kapsayıcı bitişi-->
+    <script src="js/script.js"></script>
+</body>
+</html>

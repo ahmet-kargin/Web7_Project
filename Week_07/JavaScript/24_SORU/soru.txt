@@ -1,0 +1,13 @@
+10 elemanlı bir not dizisi olsun.
+Bunlar liste halinde ekrana bastırılacak.
+Bu notların içinde 50 ve üstü olanlar başarılı,
+diğerleri başarısız.
+Başarılı olanlara kendi tasarladığınz bir class, başarısz olanlara da
+yine kendi tasarladığınız başka bir class atanacak.
+
+1) Diziyi oluştur
+2) dizinin elemanlarını ekrana bastırılacak
+3) gerekli kontrolleri yap, classları uygula
+
+1) diziyi oluştur
+2) dizinin elemanlarını ekrana bastır ve bastırdığın değeri kontorle 

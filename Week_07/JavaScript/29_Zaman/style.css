@@ -1,0 +1,24 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    background-color: antiquewhite;
+}
+
+.clock{
+    text-align: center;
+    font-size: 60px;
+    color: rgb(7, 1, 41);
+    height: 100px;
+    margin-top: 250px;
+    line-height: 100px;
+}
+
+span{
+    padding: 15px;
+    background-color: darkgreen;
+    border-radius: 10px;
+    height: 100px;
+}

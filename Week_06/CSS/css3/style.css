@@ -1,0 +1,16 @@
+.buton{
+    width: 125px;
+    height: 35px;
+    background-color:white;
+    border: none;
+    border-bottom: 2px solid black;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    transition: width 0.5s;
+}
+
+.buton:hover{
+    width: 135px;
+    transition: width 0.5s;
+}

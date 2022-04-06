@@ -1,0 +1,17 @@
+.basarili{
+    background-color: green;
+    color:yellow;
+    font-weight: bold;
+    border:1px solid black;
+    width: 100px;
+    text-align: center;
+}
+
+.basarisiz{
+    background-color: red;
+    color:white;
+    font-weight: bold;
+    border:1px solid black;
+    width: 100px;
+    text-align: center;
+}

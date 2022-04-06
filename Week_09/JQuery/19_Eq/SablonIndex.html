@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <button id="sec-1" class="btn">Seç-1</button><br><br>
+    <button id="sec-2">Seç-2</button><br><br>
+    <button id="sec-3" class="btn">Seç-3</button><br><br>
+    <p>Lorem ipsum dolor sit amet.</p>
+    <p class="custom">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam aliquid ut cumque!</p>
+    <p class="custom">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi nulla, minima corporis fugit exercitationem animi facilis consequatur ab minus deleniti.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium autem obcaecati suscipit architecto eligendi.</p>
+    <p class="custom">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias amet ea eum, nisi deleniti odio?</p>
+    <script>
+        $(document).ready(function(){
+            $("#sec-1").click(function(){
+                $("p").eq(1).css("background-color","gray");
+            })
+            $("#sec-2").click(function(){
+                $("p").eq(-4).css("background-color","gray");
+            })
+            $("#sec-3").click(function(){
+                alert($(this).index(".btn"));
+            })
+        })
+    </script>
+</body>
+</html>

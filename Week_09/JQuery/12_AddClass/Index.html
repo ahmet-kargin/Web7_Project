@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .box{
+            padding: 30px;
+            background-color: red !important;
+            color: white;
+            font-size:25px;
+            margin-bottom:20px;
+            border-radius:25px;
+        }
+        .p{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <button id="addClass">addClass</button>
+    <button id="removeClass">removeClass</button>
+    <button id="toggleClass">toggleClass</button>
+
+    <p class="p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis rerum quidem nihil. Quisquam facilis, reprehenderit quod inventore iste iure praesentium.</p>
+    <script>
+        $(document).ready(function(){
+            $("#addClass").click(function(){
+                $(".p").addClass("box");
+            })
+            $("#removeClass").click(function(){
+                $(".p").removeClass("box");
+            })
+            $("#toggleClass").click(function(){
+                $(".p").toggleClass("box");
+            })
+        })
+    </script>
+</body>
+</html>

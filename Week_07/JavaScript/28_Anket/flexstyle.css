@@ -1,0 +1,40 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+.kapsayici{
+    display: flex;
+    /*Sadece display:flex şeklinde kullandığımızda
+    flex-direction özelliği row olarak kabul edilir.
+    Bu yüzden de yan yana getirir.
+    */
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+.kutu1{
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+}
+.kutu2{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(18, 77, 77);
+}
+.kutu3{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(0, 0, 0);
+}
+.kutu4{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(116, 192, 17);
+}
+.kutu5{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(131, 10, 50);
+}

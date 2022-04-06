@@ -1,0 +1,2 @@
+CREATE DATABASE WebAksam2
+USE WebAksam2

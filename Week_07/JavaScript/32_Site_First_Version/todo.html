@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="display: flex; justify-content: center;">
+    <div id="todoContainer" style="clear:both">
+        <div id="newTaskBox">
+            <h2>Yeni Görev:</h2>
+            <input type="text" name="newTaskTextBox" id="newTaskTextBox">
+            <button id="newTaskButton">+</button>
+        </div>
+        <div id="tasks">
+            <div id="taskList">
+                <h2>Görevler</h2>
+                <ul id="ul"></ul>
+            </div>
+        </div>
+    </div>
+    <script src="scriptTodo.js"></script>
+</body>
+</html>

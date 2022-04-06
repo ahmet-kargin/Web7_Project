@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <button id="filter">Filter</button>
+    <p>Lorem ipsum dolor sit amet.</p>
+    <p class="custom">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam aliquid ut cumque!</p>
+    <p class="custom">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi nulla, minima corporis fugit exercitationem animi facilis consequatur ab minus deleniti.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium autem obcaecati suscipit architecto eligendi.</p>
+    <p class="custom">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias amet ea eum, nisi deleniti odio?</p>
+    <script>
+        $(document).ready(function(){
+            $("#filter").click(function(){
+                $("p").filter(".custom").css("background-color","aqua");
+            })
+        })
+    </script>
+</body>
+</html>

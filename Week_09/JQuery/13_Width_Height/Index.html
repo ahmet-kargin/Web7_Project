@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .box{
+            padding:10px;
+            width: 200px;
+            height: 200px;
+            border:1px solid black;
+            background-color: red;
+            margin:20px 0;
+        }
+    </style>
+</head>
+<body>
+    <button id="ayarla_1">Ayarla-1</button>
+
+    <div class="box" id="box1"></div>
+    <div class="box" id="box2"></div>
+    <script>
+        $(document).ready(function(){
+            $("#ayarla_1").click(function(){
+                $("#box1").width(500);
+                $("#box2").innerWidth(500);
+                $("#box1").height(100);
+                $("#box2").innerHeight(100);
+                $("#box1").append(`<p style='color:white'>Genişlik: ${$("#box1").width()}</p>`);
+                $("#box1").append(`<p style='color:white'>Yükseklik: ${$("#box1").height()}</p>`);
+                $("#box2").append(`<p style='color:white'>Genişlik: ${$("#box2").width()}</p>`);
+                $("#box2").append(`<p style='color:white'>Yükseklik: ${$("#box2").height()}</p>`);
+            })
+            
+        })
+    </script>
+</body>
+</html>
