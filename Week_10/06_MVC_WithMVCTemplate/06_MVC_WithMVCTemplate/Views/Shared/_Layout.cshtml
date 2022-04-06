@@ -10,9 +10,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     
     <style>
-        @*.nav-link:hover {
+        .nav-link:hover {
             background-color: red;
-        }*@
+        }
         .active{
             background-color: red;
         }
@@ -55,15 +55,25 @@
         </div>
     </footer>
     <script>
+        @*function showonlyone(thechosenone) {
+            $('.nav-link').each(function (index) {
+                if ($(this).attr("background-color","red") == thechosenone) {
+                    $(this).show(1000).fadeIn(500);
+                }
+                else {
+                    $(this).hide(1500).fadeOut(500);
+                }
+            });
+        }*@
         $(document).ready(function () {
             $('.nav-link').click(function () {
-                var active = $(this).hasClass('active');
                 //make all inactive-doesn't work
                 $('.nav-link').each(function () {
                     if ($(this).hasClass('active')) {
                         $(this).removeClass('active')
                     }
                 });
+                var active = $(this).hasClass('active');
 
                 if (active) {
                     $(this).removeClass('active')
