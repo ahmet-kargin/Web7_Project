@@ -13,7 +13,7 @@
         .nav-link:hover {
             background-color: red;
         }
-        .active{
+        .activeLink{
             background-color: red;
         }
     </style>
@@ -65,7 +65,7 @@
                 }
             });
         }*@
-        $(document).ready(function () {
+        @*$(document).ready(function () {
             $('.nav-link').click(function () {
                 //make all inactive-doesn't work
                 $('.nav-link').each(function () {
@@ -81,7 +81,7 @@
                     $(this).addClass('active')
                 }
             });
-        });
+        });*@
     </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
