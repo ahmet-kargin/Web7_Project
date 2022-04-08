@@ -1,101 +1,68 @@
-﻿@model List<_07_DersBlogSite.Models.Article>
-<<<<<<< HEAD
+﻿@*Model bazlı veri taşıma*@
+@model List<_07_DersBlogSite.Models.Article>
 @*<div class="row mb-2">
         @foreach (var article in Model)
         {
-=======
-<div class="row mb-2">
-    @foreach (var article in Model)
-    {
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">@article.ArticleTitle</h5>
-                    <p class="card-text">@article.ArticleContent</p>
-                   
-                    <a href="Home/Display/@article.ID" class="btn btn-primary col-12">@article.ArticleButton</a>
-                   
-                    @Html.DisplayText(article.ArticleContent)
-                    
-
-                </div>
-            </div>
-        </div>
-
-
-    }
-</div>
-
-
-
-
-    @*<div class="row mb-2">
-
->>>>>>> 04705f69f3ec1c51fbb28f545f92e817b0c24cec
-            <div class="col-4">
+            <div class="col-4 pb-2">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">@article.ArticleTitle</h5>
-                        <p class="card-text">@article.ArticleContent</p>
-                        <a href="#" class="btn btn-primary col-12">Go Somewhere</a>
+                        <h5 class="card-title">@article.ArticleHeader</h5>
+                        <p class="card-text">@article.ArticleText</p>
+                        <a href="#" class="btn btn-primary col-12">Devamını oku</a>
                     </div>
                 </div>
             </div>
-
-
         }
     </div>*@
 
-@*ViewBag Kullanımı*@
-@{ViewBag.Kemal = "Anasayfa"; }
+@*ViewBag kullanımı*@
+@{
+    //ViewData["kemal"] = "Anasayfa";
+    ViewBag.Kemal = "Anasayfa";
+}
 @*<div class="row mb-2">
         @foreach (var article in ViewBag.Articles as List<_07_DersBlogSite.Models.Article>)
         {
-            <div class="col-4">
+            <div class="col-4 pb-2">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">@article.ArticleTitle</h5>
-                        <p class="card-text">@article.ArticleContent</p>
-                        <a href="#" class="btn btn-primary col-12">Devamını Okuyunuz.</a>
+                        <h5 class="card-title">@article.ArticleHeader</h5>
+                        <p class="card-text">@article.ArticleText</p>
+                        <a href="#" class="btn btn-primary col-12">Devamını oku</a>
                     </div>
                 </div>
             </div>
         }
     </div>*@
 
-@*ViewData Kullanımı*@
+@*ViewData kullanımı*@
 @*<div class="row mb-2">
-    @foreach (var article in ViewData["makaleler"] as List<_07_DersBlogSite.Models.Article>)
-    {
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">@article.ArticleTitle</h5>
-                    <p class="card-text">@article.ArticleContent</p>
-                    <a href="#" class="btn btn-primary col-12">Go Somewhere</a>
+        @foreach (var article in ViewData["makaleler"] as List<_07_DersBlogSite.Models.Article>)
+        {
+            <div class="col-4 pb-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@article.ArticleHeader</h5>
+                        <p class="card-text">@article.ArticleText</p>
+                        <a href="#" class="btn btn-primary col-12">Devamını oku</a>
+                    </div>
                 </div>
             </div>
-        </div>
- </div>
+        }
+    </div>*@
 
-    }*@
-
-
+@*TempData kullanımı*@
 <div class="row mb-2">
     @foreach (var article in TempData["articles"] as List<_07_DersBlogSite.Models.Article>)
     {
-        <div class="col-4">
+        <div class="col-4 pb-2">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">@article.ArticleTitle</h5>
-                    <p class="card-text">@article.ArticleContent</p>
-                    <a href="#" class="btn btn-primary col-12">Go Somewhere</a>
+                    <h5 class="card-title">@article.ArticleHeader</h5>
+                    <p class="card-text">@article.ArticleText</p>
+                    <a href="home/getarticle/@article.ID" class="btn btn-primary col-12">Devamını oku</a>
                 </div>
             </div>
         </div>
-
     }
 </div>
-
-
-
