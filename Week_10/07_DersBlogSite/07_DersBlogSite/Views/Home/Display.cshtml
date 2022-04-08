@@ -1,0 +1,19 @@
+﻿@model _07_DersBlogSite.Models.Article
+
+
+
+<div class="row mb-12">
+   
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.ArticleTitle</h5>
+                    <p class="card-text">@Model.ArticleContent</p>
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-secondary col-12">Geri</a>
+                </div>
+            </div>
+        </div>
+
+
+    
+</div>

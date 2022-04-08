@@ -1,5 +1,4 @@
 ﻿@model List<_07_DersBlogSite.Models.Article>
-
 <div class="row mb-2">
     @foreach (var article in Model)
     {
@@ -8,7 +7,12 @@
                 <div class="card-body">
                     <h5 class="card-title">@article.ArticleTitle</h5>
                     <p class="card-text">@article.ArticleContent</p>
-                    <a href="#" class="btn btn-primary col-12">@article.art</a>
+                   
+                    <a href="Home/Display/@article.ID" class="btn btn-primary col-12">@article.ArticleButton</a>
+                   
+                    @Html.DisplayText(article.ArticleContent)
+                    
+
                 </div>
             </div>
         </div>

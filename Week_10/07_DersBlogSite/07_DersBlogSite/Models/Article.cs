@@ -10,6 +10,6 @@ namespace _07_DersBlogSite.Models
         public int ID { get; set; }
         public string ArticleTitle { get; set; }
         public string ArticleContent { get; set; }
-        public int ArticleButton { get; set; }
+        public string ArticleButton { get; set; }
     }
 }
