@@ -22,7 +22,7 @@ namespace _07_DersBlogSite.Controllers
                 new Lesson {ID=7, LessonName="C#", Category="FrontEnd"},
                 new Lesson {ID=8, LessonName="PHP", Category="FrontEnd"},
             };
-            return View();
+            return View(lessons);
         }
     }
 }

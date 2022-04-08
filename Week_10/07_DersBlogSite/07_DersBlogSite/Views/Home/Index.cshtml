@@ -1,110 +1,71 @@
 ﻿@model List<_07_DersBlogSite.Models.Article>
+@*<div class="row mb-2">
+        @foreach (var article in Model)
+        {
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@article.ArticleTitle</h5>
+                        <p class="card-text">@article.ArticleContent</p>
+                        <a href="#" class="btn btn-primary col-12">Go Somewhere</a>
+                    </div>
+                </div>
+            </div>
 
-<div class="row mb-2">
-    @foreach (var article in Model)
+
+        }
+    </div>*@
+
+@*ViewBag Kullanımı*@
+@{ViewBag.Kemal = "Anasayfa"; }
+@*<div class="row mb-2">
+        @foreach (var article in ViewBag.Articles as List<_07_DersBlogSite.Models.Article>)
+        {
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@article.ArticleTitle</h5>
+                        <p class="card-text">@article.ArticleContent</p>
+                        <a href="#" class="btn btn-primary col-12">Devamını Okuyunuz.</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>*@
+
+@*ViewData Kullanımı*@
+@*<div class="row mb-2">
+    @foreach (var article in ViewData["makaleler"] as List<_07_DersBlogSite.Models.Article>)
     {
         <div class="col-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">@article.ArticleTitle</h5>
                     <p class="card-text">@article.ArticleContent</p>
-                    <a href="#" class="btn btn-primary col-12">@article.art</a>
+                    <a href="#" class="btn btn-primary col-12">Go Somewhere</a>
                 </div>
             </div>
         </div>
+ </div>
 
+    }*@
+
+
+<div class="row mb-2">
+    @foreach (var article in TempData["articles"] as List<_07_DersBlogSite.Models.Article>)
+    {
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@article.ArticleTitle</h5>
+                    <p class="card-text">@article.ArticleContent</p>
+                    <a href="#" class="btn btn-primary col-12">Go Somewhere</a>
+                </div>
+            </div>
+        </div>
 
     }
 </div>
 
 
 
-
-    @*<div class="row mb-2">
-
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary col-12">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary col-12">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary col-12">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary col-12">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary col-12">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary col-12">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary col-12">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary col-12">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary col-12">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-        </div>*@
