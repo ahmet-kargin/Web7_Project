@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta na me="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/style.css">
-    <title>@ViewBag.Kemal - Ders Blog Sitesi</title>
+    <title>@ViewBag.Kemal - Ders Blog Site</title>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark ">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
                 <a class="navbar-brand fs-3" href="#">Web-7 Ders Blog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -34,21 +34,21 @@
                                 Dersler
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="lesson">HTML</a></li>
-                                <li><a class="dropdown-item" href="#">CSS</a></li>
+                                <li><a class="dropdown-item" href="lesson">Tüm Dersler</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">HTML</a></li>
+                                <li><a class="dropdown-item" href="#">Css</a></li>
                                 <li><a class="dropdown-item" href="#">Bootstrap</a></li>
-                                <li><a class="dropdown-item" href="#">JavaScriptT</a></li>
+                                <li><a class="dropdown-item" href="#">JavaScript</a></li>
                                 <li><a class="dropdown-item" href="#">JQuery</a></li>
                                 <li><a class="dropdown-item" href="#">React</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">C#</a></li>
                                 <li><a class="dropdown-item" href="#">PHP</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">İletişim</a>
+                            <a class="nav-link" href="#">İletişim</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -59,12 +59,13 @@
             </div>
         </nav>
     </header>
+
     <main class="p-3">
         @RenderBody();
     </main>
 
     <footer>
-        <p>Bu site Web-7 grubu tarafından hazarlanmıştır. Copyright 2022</p>
+        <p>Bu site Web-7 grubu tarafından hazırlanmıştır. Copyright 2022</p>
     </footer>
     <!--SCRIPTS-->
     <script src="~/js/bootstrap.bundle.min.js"></script>
