@@ -1,0 +1,66 @@
+﻿@model IEnumerable<EF_Core_Kutuphane_03.Models.Kitaplar>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Ad
+            </th>
+            <th>
+                Sayfa Sayısı
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stok)
+            </th>
+            <th>
+                Türler
+            </th>
+            <th>
+                Yayın Evleri
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Yazarlar)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SayfaSayisi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stok)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Turler.TurAd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YayinEvleri.Ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Yazarlar.AdSoyad)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Isbn">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Isbn">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Isbn">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
