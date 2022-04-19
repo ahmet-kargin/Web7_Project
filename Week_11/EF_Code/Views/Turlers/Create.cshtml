@@ -1,0 +1,19 @@
+@model EF_Code.Models.Turler
+@{
+    ViewData["Title"] = "Create";
+}
+<h1 class="display-3">Kitap Türü Ekleme</h1>
+<hr>
+<div class="row">
+    <div class="col-sm-6">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="TurAd" class="control-label">Kitap Türü</label>
+                <input type="text" asp-for="TurAd" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-outline-success">
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,13 +1,12 @@
-@model EF_Code.Models.Turler
+@model List<EF_Code.Models.Yayinevleri>
 @{
     ViewData["Title"] = "Details";
 }
-
-<h1 class="display-4">Kitap Tür Detayı</h1>
+<h1 class="display-4">Yayınevi Detayı</h1>
 <hr>
 <div class="row">
     <div class="col-sm-3">
-        Tür Id:
+        Yayınevi Id:
     </div>
     <div class="col-sm-5">
         @Model.Id
@@ -18,7 +17,7 @@
         Kitap Türü:
     </div>
     <div class="col-sm-5">
-        @Model.TurAd
+        @Model.
     </div>
 </div>
 <a class="btn btn-primary" asp-action="Index">Kitap Türlerine Dön</a>

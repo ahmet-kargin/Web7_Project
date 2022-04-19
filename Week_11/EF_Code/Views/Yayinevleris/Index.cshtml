@@ -1,0 +1,31 @@
+@model List<EF_Code.Models.Yayinevleri>
+@{
+    ViewData["Title"] = "Yayınevleri";
+}
+
+<h1 class="display-3">Yayınevleri</h1>
+<a href="btn btn-success btn-sm" asp-action="Index">Yeni Yayınevi</a>
+<table class="table table-sm table-dark w-50 mt-2">
+    <thead class="bg-primary">
+        <tr>
+            <th>Yayınevi ID</th>
+            <th>Ad</th>
+            <th>Adres</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var yayinevi in Model)
+        {
+            <tr>
+                <td>@yayinevi.Id</td>
+                <td>@yayinevi.Ad</td>
+                <td>@yayinevi.Adres</td>
+                <td>
+                    <a href="btn btn-sm btn-info" asp-action="Details" asp-route-id="@yayinevi.Id">Detaylar</a>
+                    <a href="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@yayinevi.Id">Düzenle</a>
+                    <a href="btn btn-sm btn-warning" asp-action="Delete" asp-route-id="@yayinevi.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
