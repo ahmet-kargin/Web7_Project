@@ -10,20 +10,59 @@ namespace EF_Code.Controllers
     public class YayinevlerisController : Controller
     {
         private readonly KutuphaneAksamContext _context;
-
         public YayinevlerisController(KutuphaneAksamContext context)
         {
-            _context = context;
+            _context=context;
         }
-        //GET listeleme
-        public IActionResult Index()
+        //GET-Listeleme
+        public IActionResult Index(){
+            return View(_context.Yayinevleris.ToList()); //List tipinde değerler gönderiliyor.
+        }
+        //GET-detay gösterme
+        public IActionResult Details(int id){
+            var yayinevleri= _context.Yayinevleris.Find(id);
+            return View(yayinevleri);
+        }
+        //GET-Düzeltme sayfası
+        public IActionResult Edit(int id){
+            var yayinevleri = _context.Yayinevleris.Find(id);
+            return View(yayinevleri);
+        }
+        //POST-düzeltme işlemi
+        [HttpPost]
+        public IActionResult Edit(int id, [Bind("Id, Ad")] Yayinevleri yayinevleri)
         {
-            return View(_context.Yayinevleris.ToList());
+            _context.Update(yayinevleri); //Bu satır context i güncelledi.
+            _context.SaveChanges(); //Bu satır database i güncelledi.
+            return RedirectToAction("Index");
+            //return View(tur);
         }
-        public IActionResult Details(int id)
+        //DELETE işlemi
+        public IActionResult Delete(int id)
         {
-            var yayinevi = _context.Yayinevleris.Find(id);
-            return View(yayinevi);
+            var silinecekYayinevi = _context.Yayinevleris.Find(id);
+            return View(silinecekYayinevi);
         }
+        [HttpPost,ActionName("DeleteConfirmed")]
+        public IActionResult DeleteConfirmed(int id){
+            var silinecekYayinevi = _context.Yayinevleris.Find(id);
+            _context.Yayinevleris.Remove(silinecekYayinevi);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost] //Post zaten kayıt işlemidir
+        public IActionResult Create(Yayinevleri yayınevi)
+        {
+            _context.Add(yayınevi);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -1,0 +1,47 @@
+@model Kitaplar
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h5 class="display-5">@Model.Ad kitabını düzenle</h5>
+<hr>
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="mb-3">
+                <label asp-for="Isbn" class="control-label">ISBN</label>
+                <input asp-for="Isbn" type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Ad" class="control-label">Kitap</label>
+                <input asp-for="Ad" type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="SayfaSayisi" class="control-label">Sayfa  Sayısı</label>
+                <input asp-for="SayfaSayisi" type="text" class="form-control">
+            </div>
+             <div class="mb-3">
+                <label asp-for="Stok" class="control-label">Stok</label>
+                <input asp-for="Stok" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="mb-3">
+                <label asp-for="TurlerId" class="control-label">Kitap Türü</label>
+                <select asp-for="TurlerId" asp-items="ViewBag.Tur"  class="form-select form-control"></select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Yazarlar" class="control-label">Yazar</label>
+                <select asp-for="YazarlarId" asp-items="ViewBag.Yazar"  class="form-select form-control"></select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="YayinEvleriId" class="control-label">Yayınevi</label>
+                <select asp-for="YayinEvleriId" asp-items="ViewBag.Yayinevi"  class="form-select form-control"></select>
+            </div>
+            <div class="mb-3">
+               <button type="submit" class="btn btn-warning w-100">Değişiklikleri Kaydet</button>
+            </div>
+        </div>
+    </div>
+
+</form>
