@@ -10,6 +10,7 @@ namespace EF_CodeFirst.Models.Entities
         public int  PublisherId { get; set; }
         public string PublisherName { get; set; }             
         public string PublisherCity { get; set; }             
-        public string PublisherMail { get; set; }             
+        public string PublisherMail { get; set; }   
+        public List<Book> Books { get; set; }             
     }
 }
