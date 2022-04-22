@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EF_CodeFirst.Models.Entities
+namespace EF_CodeFirst.Models
 {
     public class Publisher
     {
@@ -11,6 +11,7 @@ namespace EF_CodeFirst.Models.Entities
         public string PublisherName { get; set; }             
         public string PublisherCity { get; set; }             
         public string PublisherMail { get; set; }   
-        public List<Book> Books { get; set; }             
+        public bool IsDeleted { get; set; }          
+            
     }
 }

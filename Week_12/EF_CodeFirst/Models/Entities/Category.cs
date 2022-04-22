@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EF_CodeFirst.Models.Entities
+namespace EF_CodeFirst.Models
 {
     public class Category
     {
@@ -11,5 +11,7 @@ namespace EF_CodeFirst.Models.Entities
         public string CategoryName { get; set; }             
         public string CategoryDescription { get; set; }          
         public List<Book> Books { get; set; }   
+        public bool IsDeleted { get; set; }          
+
     }
 }

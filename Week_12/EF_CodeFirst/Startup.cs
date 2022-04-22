@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EF_CodeFirst.Models.Context;
+using EF_CodeFirst.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,7 +27,7 @@ namespace EF_CodeFirst
         {
             services.AddControllersWithViews();
             services.AddDbContext<LibraryContext>(options => 
-            options.UseSqlServer(Configuration.GetConnectionString("HomeConn")));
+            options.UseSqlServer(Configuration.GetConnectionString("LibraryConn")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

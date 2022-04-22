@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EF_CodeFirst.Models.Context;
-using EF_CodeFirst.Models.Entities;
+using EF_CodeFirst.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controllers
@@ -17,7 +16,9 @@ namespace Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Categories.ToList());
+            var categories = _context.Categories
+            .Where(x=>x.IsDeleted==false).ToList();
+            return View(categories);
         }
         public IActionResult Details(int id){
             var category = _context.Categories.Find(id);
@@ -29,24 +30,32 @@ namespace Controllers
             return View(category);
         }
         [HttpPost]
-        public IActionResult Edit(int id, [Bind("CategoryId, CategoryName")] Category category){
-            _context.Update(category);
+        public IActionResult Edit(Category category){
+            _context.Categories.Update(category);
             _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+         public IActionResult GetDeleteCategories()
+        {
+            var categories = _context.Categories
+            .Where(x=>x.IsDeleted==true).ToList();
+            return View("Index",categories);
         }
         public IActionResult Delete(int id)
         {
             var deleteCategory = _context.Categories.Find(id);
             return View(deleteCategory);
         }
-        [HttpPost,ActionName("DeleteConfirmed")]
+        [HttpPost,ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
             var deleteCategory = _context.Categories.Find(id);
-            _context.Categories.Remove(deleteCategory);
+            deleteCategory.IsDeleted=true;
+            _context.Categories.Update(deleteCategory);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        
         public IActionResult Create(){
             return View();
         }

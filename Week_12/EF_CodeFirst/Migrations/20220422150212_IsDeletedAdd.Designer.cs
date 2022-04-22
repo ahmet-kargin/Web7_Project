@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EF_CodeFirst.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20220421165356_Mig_RelationAdd")]
-    partial class Mig_RelationAdd
+    [Migration("20220422150212_IsDeletedAdd")]
+    partial class IsDeletedAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,6 +36,9 @@ namespace EF_CodeFirst.Migrations
 
                     b.Property<string>("AuthorSurname")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("AuthorId");
 
@@ -70,6 +73,9 @@ namespace EF_CodeFirst.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("PublisherId")
                         .HasColumnType("int");
 
@@ -97,6 +103,9 @@ namespace EF_CodeFirst.Migrations
                     b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
@@ -108,6 +117,9 @@ namespace EF_CodeFirst.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("PublisherCity")
                         .HasColumnType("nvarchar(max)");

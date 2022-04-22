@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EF_CodeFirst.Models.Entities
+namespace EF_CodeFirst.Models
 {
     public class Book
     {
@@ -18,6 +18,8 @@ namespace EF_CodeFirst.Models.Entities
         public int AuthorId { get; set; }
         public Author Author { get; set; }             
         public int PublisherId { get; set; }   
-        public Publisher Publisher { get; set; }          
+        public Publisher Publisher { get; set; }
+        public bool IsDeleted { get; set; }          
+
     }
 }

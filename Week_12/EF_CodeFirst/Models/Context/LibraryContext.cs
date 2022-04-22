@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EF_CodeFirst.Models.Entities;
+using EF_CodeFirst.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EF_CodeFirst.Models.Context
+namespace EF_CodeFirst.Models
 {
    
     public class LibraryContext : DbContext
@@ -22,7 +22,7 @@ namespace EF_CodeFirst.Models.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Name=ConnectionStrings:HomeConn");
+                optionsBuilder.UseSqlServer("Name=ConnectionStrings:LibraryConn");
             }
         }
     }
