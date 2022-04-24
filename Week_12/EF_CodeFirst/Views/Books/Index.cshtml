@@ -1,0 +1,47 @@
+@model List<EF_CodeFirst.Models.Book>
+@{
+    ViewData["Title"] = "Book List";
+}
+
+<h5 class="display-5 bg-warning w-100 p-3 text-white">BOOKS</h5>
+<hr>
+<a class="btn btn-success btn-sm" asp-action="Create">Create a new Books</a>
+<a class="btn btn-success btn-sm" asp-action="GetDeleteBooks">Deleted Book</a>
+<hr>
+<table class="table table-sm table-dark w-100 mt-2 ">
+    <thead class="bg-primary p-3">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Year of Publication</th>
+            <th>Edition Number</th>
+            <th>Number of Page</th>
+            <th>Quantity</th>
+            <th>Book's Category</th>
+            <th>Book's Author</th>
+            <th>Book's Publisher</th>
+            <th>Transaction</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.BookId</td>
+                <td>@book.BookName</td>
+                <td>@book.BookYearOfPublication</td>
+                <td>@book.BookEditionNumber</td>
+                <td>@book.BookNumberOfPage</td>
+                <td>@book.BookQuantity</td>
+                <td>@book.Category.CategoryName</td>
+                <td>@book.Author.AuthorName</td>
+                <td>@book.Publisher.PublisherName</td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@book.BookId">Details</a>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@book.BookId">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@book.BookId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

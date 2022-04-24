@@ -1,0 +1,47 @@
+@model EF_CodeFirst.Models.Book
+@{
+    ViewData["Title"] = "Create";
+}
+<h5 class="display-5 bg-warning w-100 p-3 text-white">Add Book</h1>
+<hr>
+<div class="row">
+    <div class="col-sm-6">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="BookName" class="control-label">Book Name</label>
+                <input type="text" asp-for="BookName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="BookYearOfPublication" class="control-label">Year of Publication</label>
+                <input type="text" asp-for="BookYearOfPublication" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="BookEditionNumber" class="control-label">Edition Number</label>
+                <input type="text"  asp-for="BookEditionNumber" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="BookNumberOfPage" class="control-label">Number of Page</label>
+                <input type="text" asp-for="BookNumberOfPage" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="BookQuantity" class="control-label">Quantity</label>
+                <input type="text" asp-for="BookQuantity" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="Category.CategoryName" class="control-label">Category Name</label>
+                <input type="text" asp-for="Category.CategoryName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="Author.AuthorName" class="control-label">Author Name</label>
+                <input type="text" asp-for="Author.AuthorName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="Publisher.PublisherName" class="control-label">Publisher Name</label>
+                <input type="text" asp-for="Publisher.PublisherName" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-outline-success">
+            </div>
+        </form>
+    </div>
+</div>

@@ -5,53 +5,59 @@ using System.Threading.Tasks;
 using EF_CodeFirst.Models;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace EF_CodeFirst.Controllers
 {
-    public class CategoriesController : Controller
+
+    public class PublishersController : Controller
     {
+
+//private member
         private readonly LibraryContext _context;
-        public CategoriesController(LibraryContext context)
+        //ctor
+        public PublishersController(LibraryContext context)
         {
             _context = context;
         }
+//methods
         public IActionResult Index()
         {
-            var categories = _context.Categories
+            var publishers = _context.Publishers
             .Where(x=>x.IsDeleted==false).ToList();
-            return View(categories);
+            return View(publishers);
         }
         public IActionResult Details(int id){
-            var category = _context.Categories.Find(id);
-            return View(category);
+            var publisher = _context.Publishers.Find(id);
+            return View(publisher);
         }
         public IActionResult Edit(int id){
-            var category = _context.Categories.Find(id);
+            var publisher = _context.Publishers.Find(id);
 
-            return View(category);
+            return View(publisher);
         }
         [HttpPost]
-        public IActionResult Edit(Category category){
-            _context.Categories.Update(category);
+        public IActionResult Edit(Publisher publisher){
+            _context.Publishers.Update(publisher);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-         public IActionResult GetDeleteCategories()
+        public IActionResult GetDeletePublishers()
         {
-            var categories = _context.Categories
+            var publishers = _context.Publishers
             .Where(x=>x.IsDeleted==true).ToList();
-            return View("Index",categories);
+            return View("Index", publishers);
         }
         public IActionResult Delete(int id)
         {
-            var deleteCategory = _context.Categories.Find(id);
-            return View(deleteCategory);
+            var publisher = _context.Publishers.Find(id);
+            return View(publisher);
         }
         [HttpPost,ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            var deleteCategory = _context.Categories.Find(id);
-            deleteCategory.IsDeleted=true;
-            _context.Categories.Update(deleteCategory);
+            var publisher = _context.Publishers.Find(id);
+            publisher.IsDeleted=true;
+            _context.Publishers.Update(publisher);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -60,9 +66,9 @@ namespace EF_CodeFirst.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Category category)
+        public IActionResult Create(Publisher publisher)
         {
-            _context.Add(category);
+            _context.Add(publisher);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,0 +1,37 @@
+@model List<EF_CodeFirst.Models.Author>
+@{
+    ViewData["Title"] = "Author List";
+}
+
+<h5 class="display-5 bg-warning w-100 p-3 text-white">AUTHORS</h5>
+<hr>
+<a class="btn btn-success btn-sm" asp-action="Create">Create a new Authors</a>
+<a class="btn btn-success btn-sm" asp-action="GetDeleteAuthors">Deleted Author</a>
+<hr>
+<table class="table table-sm table-dark w-100 mt-2">
+    <thead class="bg-primary">
+        <tr>
+            <th>Id</th>
+            <th>Author Name</th>
+            <th>Author Surname</th>
+            <th>Author's Day of Birth'</th>
+            <th>Transaction</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var author in Model)
+        {
+            <tr>
+                <td>@author.AuthorId</td>
+                <td>@author.AuthorName</td>
+                <td>@author.AuthorSurname</td>
+                <td>@author.AuthorDateOfBirth</td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@author.AuthorId">Details</a>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@author.AuthorId">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@author.AuthorId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

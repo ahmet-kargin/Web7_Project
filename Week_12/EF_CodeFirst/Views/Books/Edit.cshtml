@@ -1,0 +1,32 @@
+@model Book
+@{
+    ViewData["Title"] = "Edit";
+}
+<h5 class="display-5 bg-warning w-100 p-3 text-white">Edit Book</h5>
+<hr>
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="mb-3">
+                <label asp-for="BookName" class="control-label">@Model.BookId)</label>
+                <input type="hidden" asp-for="BookId">
+                <label for="">Book Name</label>
+                <input asp-for="BookName" type="text" class="form-control">
+                <label for="">Year of Publication</label>
+                <input asp-for="BookYearOfPublication" type="text" class="form-control">
+                <label for="">Edition Number</label>
+                <input asp-for="BookEditionNumber" type="text" class="form-control">
+                <label for="">Number of Page</label>
+                <input asp-for="BookNumberOfPage" type="text" class="form-control">
+                <label for="">Quantity</label>
+                <input asp-for="BookQuantity" type="text" class="form-control">
+                <label for="">Category Name</label>
+                <input asp-for="Author.AuthorName" type="text" class="form-control">
+                <input type="submit" value="Save Changes">
+                <input asp-for="Publisher.PublisherName" type="text" class="form-control">
+                <input type="submit" value="Save Changes" class="btn btn-success mt-2">
+        </div>
+        
+    </div>
+
+</form>

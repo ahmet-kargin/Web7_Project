@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<h5 class="display-5">Edit Category</h5>
+<h5 class="display-5 bg-warning w-100 p-3 text-white">Edit Category</h5>
 <hr>
 <form asp-action="Edit">
     <div class="row">
@@ -15,7 +15,7 @@
                 <label for="">Category Description</label>
                 <input asp-for="CategoryDescription" type="text" class="form-control">
 
-                <input type="submit" value="Save Changes">
+                <input type="submit" value="Save Changes" class="btn btn-success mt-2">
         </div>
         
     </div>

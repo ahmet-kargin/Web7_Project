@@ -1,0 +1,40 @@
+@model EF_CodeFirst.Models.Publisher
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h5 class="display-5 bg-warning w-100 p-3 text-white">Detail İnformation</h5>
+<hr>
+<div class="row">
+    <div class="col-sm-3">
+        Publisher's ID:
+    </div>
+    <div class="col-sm-5">
+        @Model.PublisherId
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        Publisher's Name:
+    </div>
+    <div class="col-sm-5">
+        @Model.PublisherName
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        Publisher's City:
+    </div>
+    <div class="col-sm-5">
+        @Model.PublisherCity
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        Publisher's Mail:
+    </div>
+    <div class="col-sm-5">
+        @Model.PublisherMail
+    </div>
+</div>
+<a class="btn btn-primary mt-2" asp-action="Index">Return the Publisher List</a>

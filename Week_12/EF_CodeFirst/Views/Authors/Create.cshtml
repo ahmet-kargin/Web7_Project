@@ -1,0 +1,27 @@
+@model EF_CodeFirst.Models.Author
+@{
+    ViewData["Title"] = "Create";
+}
+<h5 class="display-5 bg-warning w-100 p-3 text-white">Add Author</h1>
+<hr>
+<div class="row">
+    <div class="col-sm-6">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="AuthorName" class="control-label">Author Name</label>
+                <input type="text" asp-for="AuthorName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorSurname" class="control-label">Author Surname</label>
+                <input type="text" asp-for="AuthorSurname" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorDateOfBirth" class="control-label">Author's Date of Birthday</label>
+                <input type="date" data-date-inline-picker="true" placeholder="dd-mm-yyyy" min="1900-01-01" max="2010-01-01" asp-for="AuthorDateOfBirth" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-outline-success">
+            </div>
+        </form>
+    </div>
+</div>

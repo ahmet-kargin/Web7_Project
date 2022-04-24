@@ -1,0 +1,43 @@
+@model Book
+@{
+    ViewData["Title"] = "Delete";
+}
+<h5 class="display-5 bg-warning w-100 p-3 text-white">Book Details</h5>
+<hr>
+<div class="row">
+    <div class="col-sm-3">
+        Book Id:
+    </div>
+    <div class="col-sm-5">
+        @Model.BookId
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        Book Name:
+    </div>
+    <div class="col-sm-5">
+        @Model.BookName
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        Book Surname:
+    </div>
+    <div class="col-sm-5">
+        @Model.BookYearOfPublication
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        Book's Number of Page:
+    </div>
+    <div class="col-sm-5">
+        @Model.BookNumberOfPage
+    </div>
+</div>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="BookId">
+    <input type="submit" value="Delete" class="btn btn-danger">
+</form>
+<a class="btn btn-primary mt-2" asp-action="Index">Return the Book List</a>

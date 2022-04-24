@@ -24,5 +24,7 @@ namespace EF_Code.Models
         public virtual Yayinevleri YayinEvleri { get; set; }
         public virtual Yazarlar Yazarlar { get; set; }
         public virtual ICollection<Odunc> Oduncs { get; set; }
+
+
     }
 }

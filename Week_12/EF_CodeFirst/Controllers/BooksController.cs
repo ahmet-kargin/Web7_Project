@@ -7,51 +7,51 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EF_CodeFirst.Controllers
 {
-    public class CategoriesController : Controller
+    public class BooksController : Controller
     {
         private readonly LibraryContext _context;
-        public CategoriesController(LibraryContext context)
+        public BooksController(LibraryContext context)
         {
             _context = context;
         }
         public IActionResult Index()
         {
-            var categories = _context.Categories
+            var books = _context.Books
             .Where(x=>x.IsDeleted==false).ToList();
-            return View(categories);
+            return View(books);
         }
         public IActionResult Details(int id){
-            var category = _context.Categories.Find(id);
-            return View(category);
+            var book = _context.Books.Find(id);
+            return View(book);
         }
         public IActionResult Edit(int id){
-            var category = _context.Categories.Find(id);
+            var book = _context.Books.Find(id);
 
-            return View(category);
+            return View(book);
         }
         [HttpPost]
-        public IActionResult Edit(Category category){
-            _context.Categories.Update(category);
+        public IActionResult Edit(Book book){
+            _context.Books.Update(book);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-         public IActionResult GetDeleteCategories()
+         public IActionResult GetDeleteBooks()
         {
-            var categories = _context.Categories
+            var books = _context.Books
             .Where(x=>x.IsDeleted==true).ToList();
-            return View("Index",categories);
+            return View("Index",books);
         }
         public IActionResult Delete(int id)
         {
-            var deleteCategory = _context.Categories.Find(id);
-            return View(deleteCategory);
+            var book = _context.Books.Find(id);
+            return View(book);
         }
         [HttpPost,ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            var deleteCategory = _context.Categories.Find(id);
-            deleteCategory.IsDeleted=true;
-            _context.Categories.Update(deleteCategory);
+            var book = _context.Books.Find(id);
+            book.IsDeleted=true;
+            _context.Books.Update(book);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -60,9 +60,9 @@ namespace EF_CodeFirst.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Category category)
+        public IActionResult Create(Book book)
         {
-            _context.Add(category);
+            _context.Add(book);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
