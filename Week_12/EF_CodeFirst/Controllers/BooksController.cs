@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EF_CodeFirst.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EF_CodeFirst.Controllers
 {
@@ -57,6 +58,7 @@ namespace EF_CodeFirst.Controllers
         }
         
         public IActionResult Create(){
+            ViewData["CategoryId"]= new SelectList(_context.Books.)
             return View();
         }
         [HttpPost]
