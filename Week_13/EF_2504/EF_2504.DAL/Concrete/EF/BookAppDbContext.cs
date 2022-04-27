@@ -22,7 +22,6 @@ namespace EF_2504.DAL.Concrete.EF
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer("Server=DESKTOP-8M7D7GE\\SQLEXPRESS; Database=BookAppDbAksam;User=sa; Pwd=123;");
-
             }
         }
 

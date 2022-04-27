@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EF_2504.MVC.Controllers
+namespace Sales.Controllers
 {
     public class HomeController : Controller
     {
@@ -14,5 +14,6 @@ namespace EF_2504.MVC.Controllers
         {
             return View();
         }
+       
     }
 }

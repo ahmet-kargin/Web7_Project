@@ -8,7 +8,11 @@ namespace EF_2504.DAL.Abstract
 {
     public interface IEntityRepository<T> where T:class
     {
-        void Add(T entity);
+        void Add(T entity);                     //(C)reate
+        T GetBy();                              //(R)ead
+        List<T> GetAll();
+        void Update(T entity);                  //(U)pdate
+        void Delete(T entity);                  //(D)elete
         
     }
 }
