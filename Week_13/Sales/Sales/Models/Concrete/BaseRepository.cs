@@ -30,7 +30,7 @@ namespace Sales.Models.Concrete
         {
             using (var _context = new SalesDbContext())
             {
-                return _context.Set<T>().ToList();
+                return _context.Set<T>().FirstOrDefault();
             }
         }
 
@@ -38,7 +38,7 @@ namespace Sales.Models.Concrete
         {
             using (var _context = new SalesDbContext())
             {
-                return _context.Set<T>().FirstOrDefault();
+                return _context.Set<T>().ToList();
             }
         }
 
