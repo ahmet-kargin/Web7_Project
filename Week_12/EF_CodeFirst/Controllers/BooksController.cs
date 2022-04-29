@@ -27,7 +27,9 @@ namespace EF_CodeFirst.Controllers
         }
         public IActionResult Edit(int id){
             var book = _context.Books.Find(id);
-
+            ViewData["CategoryId"]= new SelectList(_context.Categories.Where(a=>a.IsDeleted==false),"CategoryId","CategoryName",book.CategoryId);
+            ViewData["AuthorId"]= new SelectList(_context.Authors.Where(a=>a.IsDeleted==false),"AuthorId","AuthorName",book.AuthorId);
+            ViewData["PublisherId"]= new SelectList(_context.Publishers.Where(a=>a.IsDeleted==false),"PublisherId","PublisherName",book.PublisherId);
             return View(book);
         }
         [HttpPost]
@@ -57,8 +59,10 @@ namespace EF_CodeFirst.Controllers
             return RedirectToAction("Index");
         }
         
-        public IActionResult Create(){
-            ViewData["CategoryId"]= new SelectList(_context.Books.)
+        public IActionResult Create(int id){
+            ViewData["CategoryId"]= new SelectList(_context.Categories.Where(a=>a.IsDeleted==false),"CategoryId","CategoryName");
+            ViewData["AuthorId"]= new SelectList(_context.Authors.Where(a=>a.IsDeleted==false),"AuthorId","AuthorName");
+            ViewData["PublisherId"]= new SelectList(_context.Publishers.Where(a=>a.IsDeleted==false),"PublisherId","PublisherName");
             return View();
         }
         [HttpPost]

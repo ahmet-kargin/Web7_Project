@@ -28,16 +28,18 @@
                 <input type="text" asp-for="BookQuantity" class="form-control">
             </div>
             <div class="form-group">
-                <label asp-for="Category.CategoryName" class="control-label">Category Name</label>
-                <input type="text" asp-for="Category.CategoryName" class="form-control">
+                <label asp-for="CategoryId" class="control-label">Category Name</label>
+                <select  asp-for="CategoryId" asp-items="ViewBag.Category" class="form-control"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Author.AuthorName" class="control-label">Author Name</label>
-                <input type="text" asp-for="Author.AuthorName" class="form-control">
+                <label asp-for="AuthorId" class="control-label">Author Name</label>
+                <select  asp-for="AuthorId" asp-items="ViewBag.Author" class="form-control"></select>
+
             </div>
             <div class="form-group">
-                <label asp-for="Publisher.PublisherName" class="control-label">Publisher Name</label>
-                <input type="text" asp-for="Publisher.PublisherName" class="form-control">
+                <label asp-for="PublisherId" class="control-label">Publisher Name</label>
+                <select  asp-for="PublisherId" asp-items="ViewBag.Publisher" class="form-control"></select>
+
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-outline-success">
