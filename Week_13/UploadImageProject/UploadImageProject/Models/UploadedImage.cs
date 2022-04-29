@@ -9,6 +9,6 @@ namespace UploadImageProject.Models
     {
         public string ImageFullName { get; set; }
         public string ImageName { get; set; }
-        public string ImageSize { get; set; }
+        public long ImageSize { get; set; }
     }
 }
