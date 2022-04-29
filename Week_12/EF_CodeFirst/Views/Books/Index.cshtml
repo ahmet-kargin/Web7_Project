@@ -13,13 +13,6 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Year of Publication</th>
-            <th>Edition Number</th>
-            <th>Number of Page</th>
-            <th>Quantity</th>
-            <th>Book's Category</th>
-            <th>Book's Author</th>
-            <th>Book's Publisher</th>
             <th>Transaction</th>
         </tr>
     </thead>
@@ -29,13 +22,6 @@
             <tr>
                 <td>@book.BookId</td>
                 <td>@book.BookName</td>
-                <td>@book.BookYearOfPublication</td>
-                <td>@book.BookEditionNumber</td>
-                <td>@book.BookNumberOfPage</td>
-                <td>@book.BookQuantity</td>
-                <td>@book.Category.CategoryName</td>
-                <td>@book.Author.AuthorName</td>
-                <td>@book.Publisher.PublisherName</td>
                 <td>
                     <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@book.BookId">Details</a>
                     <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@book.BookId">Edit</a>

@@ -7,6 +7,7 @@
 <div class="row">
     <div class="col-sm-6">
         <form asp-action="Create">
+            <input type="hidden" asp-for="BookId">
             <div class="form-group">
                 <label asp-for="BookName" class="control-label">Book Name</label>
                 <input type="text" asp-for="BookName" class="form-control">
@@ -29,16 +30,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label">Category Name</label>
-                <select  asp-for="CategoryId" asp-items="ViewBag.Category" class="form-control"></select>
+                <select  asp-for="CategoryId" asp-items="ViewBag.CategoryId" class="form-control"></select>
+
             </div>
             <div class="form-group">
                 <label asp-for="AuthorId" class="control-label">Author Name</label>
-                <select  asp-for="AuthorId" asp-items="ViewBag.Author" class="form-control"></select>
+                <select  asp-for="AuthorId" asp-items="ViewBag.AuthorId" class="form-control"></select>
 
             </div>
             <div class="form-group">
                 <label asp-for="PublisherId" class="control-label">Publisher Name</label>
-                <select  asp-for="PublisherId" asp-items="ViewBag.Publisher" class="form-control"></select>
+                <select  asp-for="PublisherId" asp-items="ViewBag.PublisherId" class="form-control"></select>
 
             </div>
             <div class="form-group">

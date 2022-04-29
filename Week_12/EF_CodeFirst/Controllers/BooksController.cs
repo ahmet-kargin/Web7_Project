@@ -59,10 +59,10 @@ namespace EF_CodeFirst.Controllers
             return RedirectToAction("Index");
         }
         
-        public IActionResult Create(int id){
-            ViewData["CategoryId"]= new SelectList(_context.Categories.Where(a=>a.IsDeleted==false),"CategoryId","CategoryName");
-            ViewData["AuthorId"]= new SelectList(_context.Authors.Where(a=>a.IsDeleted==false),"AuthorId","AuthorName");
-            ViewData["PublisherId"]= new SelectList(_context.Publishers.Where(a=>a.IsDeleted==false),"PublisherId","PublisherName");
+        public IActionResult Create(){
+            ViewData["CategoryId"]= new SelectList(_context.Categories.Where(q=>q.IsDeleted==false),"CategoryId","CategoryName");
+            ViewData["AuthorId"]= new SelectList(_context.Authors.Where(q=>q.IsDeleted==false),"AuthorId","AuthorName");
+            ViewData["PublisherId"]= new SelectList(_context.Publishers.Where(q=>q.IsDeleted==false),"PublisherId","PublisherName");
             return View();
         }
         [HttpPost]

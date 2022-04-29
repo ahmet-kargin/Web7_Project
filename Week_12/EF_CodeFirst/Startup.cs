@@ -27,7 +27,7 @@ namespace EF_CodeFirst
         {
             services.AddControllersWithViews();
             services.AddDbContext<LibraryContext>(options => 
-            options.UseSqlServer(Configuration.GetConnectionString("HomeConn")));
+            options.UseSqlServer(Configuration.GetConnectionString("LibraryConn")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
