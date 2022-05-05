@@ -7,7 +7,6 @@ namespace StudentRegister.Models.Entities
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
         public string DepartmentPresident { get; set; }
-        public int StudenId { get; set; }
-        public Student Student { get; set; }
+        public List<Student> Students { get; set; }
     }
 }

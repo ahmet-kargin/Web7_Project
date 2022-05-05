@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentRegister.Models.Context;
 
 namespace StudentRegister.Migrations
 {
     [DbContext(typeof(LessonAssignmentContext))]
-    partial class LessonAssignmentContextModelSnapshot : ModelSnapshot
+    [Migration("20220505174219_mig2")]
+    partial class mig2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +36,7 @@ namespace StudentRegister.Migrations
 
                     b.HasKey("DepartmentId");
 
-                    b.ToTable("Department");
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("StudentRegister.Models.Entities.Lesson", b =>
@@ -58,7 +60,7 @@ namespace StudentRegister.Migrations
 
                     b.HasKey("LessonId");
 
-                    b.ToTable("Lesson");
+                    b.ToTable("Lessons");
                 });
 
             modelBuilder.Entity("StudentRegister.Models.Entities.Student", b =>
@@ -118,7 +120,7 @@ namespace StudentRegister.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("StudentLesson");
+                    b.ToTable("StudentLessons");
                 });
 
             modelBuilder.Entity("StudentRegister.Models.Entities.Student", b =>
