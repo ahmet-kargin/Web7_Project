@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MiniShopApp.Business\MiniShopApp.Business.csproj" />
     <ProjectReference Include="..\MiniShopApp.Data\MiniShopApp.Data.csproj" />
   </ItemGroup>
 

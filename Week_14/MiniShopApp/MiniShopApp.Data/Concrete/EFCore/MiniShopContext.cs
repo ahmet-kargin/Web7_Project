@@ -11,7 +11,7 @@ namespace MiniShopApp.Data.Concrete.EFCore
     public class MiniShopContext : DbContext
     {
         public DbSet<Category> Categories { get; set; }
-        //Dependincies sağ tık add reference ile yada cntrl+. ile add to referance yapabiliriz.
+        //Dependencies sağ tık add reference ile yada cntrl+. ile add to referance yapabiliriz.
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories  { get; set; }
 

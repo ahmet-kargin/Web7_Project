@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MiniShopApp.Business.Abstract;
+using MiniShopApp.Business.Concrete;
+using MiniShopApp.Data.Abstract;
 using MiniShopApp.Data.Concrete.EFCore;
 using System;
 using System.Collections.Generic;
@@ -24,6 +27,13 @@ namespace MiniShopApp.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Uygulamanýjn herhangi bir yerinde IProductRepository kullanarak bir nesne
+            //oluþturduðumuzda, sen bunu EfCoreProductRepository türünden oluþtur.
+            services.AddScoped<IProductRepository, EfCoreProductRepository>();
+            services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
+
+            services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<ICategoryService, CategoryManager>();
             services.AddControllersWithViews();
         }
 
