@@ -20,7 +20,11 @@ namespace MiniShopApp.WebUI.Controllers
         }
         public IActionResult List(string category) 
         {
-            return View(_productService.GetAll()); //Birazdan yazacağımız metod ile getall değiştirilecek.
+            return View(_productService.GetProductsByCategory(category));
+        }
+        public IActionResult Search(string searchString)
+        {
+            return View(_productService.GetSearchResult(searchString)); //Method yazılıp tekrar gelinecek buraya
         }
     }
 }

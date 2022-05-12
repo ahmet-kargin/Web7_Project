@@ -12,6 +12,17 @@ namespace MiniShopApp.Data.Concrete.EFCore
     public class EfCoreProductRepository : EfCoreGenericRepository<Product, MiniShopContext>,
         IProductRepository
     {
+        public List<Product> GetHomePageProducts()
+        {
+            using (var context = new MiniShopContext())
+            {
+                return context
+                    .Products
+                    .Where(i => i.IsApproved && i.IsHome)
+                    .ToList();
+            }
+        }
+
         public List<Product> GetProductsByCategory(string name)
         {
             using (var context = new MiniShopContext())
@@ -31,6 +42,20 @@ namespace MiniShopApp.Data.Concrete.EFCore
                 }
                 return products.ToList();
             }
+        }
+
+        public List<Product> GetSearchResult(string searchString)
+        {
+            searchString = searchString.ToLower();
+            using (var context = new MiniShopContext())
+            {
+                var products = context
+                    .Products
+                    .Where(i => i.IsApproved && (i.Name.ToLower().Contains(searchString) || i.Description.ToLower().Contains(searchString)))
+                    .ToList();
+                return products;
+            }
+            
         }
     }
 }

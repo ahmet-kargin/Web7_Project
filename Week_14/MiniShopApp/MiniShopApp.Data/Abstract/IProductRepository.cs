@@ -10,5 +10,8 @@ namespace MiniShopApp.Data.Abstract
     public interface IProductRepository : IRepository<Product>
     {
         List<Product> GetProductsByCategory(string name);
+        List<Product> GetHomePageProducts();
+        List<Product> GetSearchResult(string searchString);
+
     }
 }

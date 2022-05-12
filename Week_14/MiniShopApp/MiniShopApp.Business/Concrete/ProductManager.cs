@@ -37,6 +37,22 @@ namespace MiniShopApp.Business.Concrete
             throw new NotImplementedException();
         }
 
+        public List<Product> GetHomePageProducts()
+        {
+            //Burada öncelikle iş kurallarını uygulayan kodlarımız olacak. Sonra aşağıdaki kodlar çalışacak.
+            return _productRepository.GetHomePageProducts();
+        }
+
+        public List<Product> GetProductsByCategory(string name)
+        {
+            return _productRepository.GetProductsByCategory(name);
+        }
+
+        public List<Product> GetSearchResult(string searchString)
+        {
+            return _productRepository.GetSearchResult(searchString);
+        }
+
         public void Update(Product entity)
         {
             throw new NotImplementedException();
