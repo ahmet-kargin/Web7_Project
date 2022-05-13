@@ -12,18 +12,7 @@ namespace MiniShopApp.Data.Concrete.EFCore
     public class EfCoreProductRepository : EfCoreGenericRepository<Product, MiniShopContext>,
         IProductRepository
     {
-        public List<Product> GetHomePageProducts()
-        {
-            using (var context = new MiniShopContext())
-            {
-                return context
-                    .Products
-                    .Where(i => i.IsApproved && i.IsHome)
-                    .ToList();
-            }
-        }
-
-        public List<Product> GetProductsByCategory(string name)
+        public int GetCountByCategory(string name)
         {
             using (var context = new MiniShopContext())
             {
@@ -36,11 +25,41 @@ namespace MiniShopApp.Data.Concrete.EFCore
                     products = products
                         .Include(i => i.ProductCategories)
                         .ThenInclude(i => i.Category)
-                        .Where(i=>i.ProductCategories.
-                        Any(a=>a.Category.Url==name));
-                        
+                        .Where(i => i.ProductCategories.
+                        Any(a => a.Category.Url == name));
+
                 }
-                return products.ToList();
+                return products.Count();
+            }
+        }
+        public List<Product> GetHomePageProducts()
+        {
+            using (var context = new MiniShopContext())
+            {
+                return context
+                    .Products
+                    .Where(i => i.IsApproved && i.IsHome)
+                    .ToList();
+            }
+        }
+        public List<Product> GetProductsByCategory(string name, int page, int pageSize)
+        {
+            using (var context = new MiniShopContext())
+            {
+                var products = context.
+                    Products
+                    .Where(i => i.IsApproved)
+                    .AsQueryable();
+                if (!string.IsNullOrEmpty(name))
+                {
+                    products = products
+                        .Include(i => i.ProductCategories)
+                        .ThenInclude(i => i.Category)
+                        .Where(i => i.ProductCategories.
+                        Any(a => a.Category.Url == name));
+
+                }
+                return products.Skip((page-1)*pageSize).Take(3).ToList();
             }
         }
 

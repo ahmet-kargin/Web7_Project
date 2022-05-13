@@ -37,15 +37,20 @@ namespace MiniShopApp.Business.Concrete
             throw new NotImplementedException();
         }
 
+        public int GetCountByCategory(string name)
+        {
+            return _productRepository.GetCountByCategory(name);
+        }
+
         public List<Product> GetHomePageProducts()
         {
             //Burada öncelikle iş kurallarını uygulayan kodlarımız olacak. Sonra aşağıdaki kodlar çalışacak.
             return _productRepository.GetHomePageProducts();
         }
 
-        public List<Product> GetProductsByCategory(string name)
+        public List<Product> GetProductsByCategory(string name, int page, int pageSize)
         {
-            return _productRepository.GetProductsByCategory(name);
+            return _productRepository.GetProductsByCategory(name, page, pageSize);
         }
 
         public List<Product> GetSearchResult(string searchString)
