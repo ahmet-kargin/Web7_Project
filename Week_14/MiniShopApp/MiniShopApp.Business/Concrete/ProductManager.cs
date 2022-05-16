@@ -22,6 +22,11 @@ namespace MiniShopApp.Business.Concrete
             throw new NotImplementedException();
         }
 
+        public void Create(Product entity, int[] categoryIds)
+        {
+            _productRepository.Create(entity, categoryIds);
+        }
+
         public void Delete(Product entity)
         {
             throw new NotImplementedException();
@@ -46,6 +51,11 @@ namespace MiniShopApp.Business.Concrete
         {
             //Burada öncelikle iş kurallarını uygulayan kodlarımız olacak. Sonra aşağıdaki kodlar çalışacak.
             return _productRepository.GetHomePageProducts();
+        }
+
+        public Product GetProductDetails(string url)
+        {
+            return _productRepository.GetProductDetails(url);
         }
 
         public List<Product> GetProductsByCategory(string name, int page, int pageSize)

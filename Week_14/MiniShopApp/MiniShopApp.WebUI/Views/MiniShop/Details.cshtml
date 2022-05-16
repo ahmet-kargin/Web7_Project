@@ -1,0 +1,23 @@
+﻿@using System.Globalization
+@model ProductDetailModel
+    <div class="row">
+        <div class="col-md-3">
+            <img src="/img/@Model.Product.ImageUrl" class="img-fluid" alt="Alternate Text" />
+        </div>
+        <div class="col-md-9">
+            <h1 class="mb-3">
+                @Model.Product.Name
+            </h1>
+            <hr />
+            @* Buraya ürünün kategorilerini yazacağız. *@
+            @{ 
+                double price = (double)Model.Product.Price;
+            }
+        <div class="mb-3">
+            <h1 class="text-primary mb-3">
+                @price.ToString("C2", CultureInfo.CreateSpecificCulture("tr-TR"));
+            </h1>
+            <button type="submit" class="btn btn-lg btn-primary">Add to Card</button>
+        </div>
+        </div>
+    </div>

@@ -12,6 +12,22 @@ namespace MiniShopApp.Data.Concrete.EFCore
     public class EfCoreProductRepository : EfCoreGenericRepository<Product, MiniShopContext>,
         IProductRepository
     {
+        public void Create(Product entity, int[] categoryIds)
+        {
+            using (var context =new MiniShopContext())
+            {
+                context.Products.Add(entity);
+                context.SaveChanges();
+                entity.ProductCategories = categoryIds
+                    .Select(catId => new ProductCategory
+                    {
+                        ProductId = entity.ProductId,
+                        CategoryId = catId
+                    }).ToList();
+                context.SaveChanges();
+            }
+        }
+
         public int GetCountByCategory(string name)
         {
             using (var context = new MiniShopContext())
@@ -42,6 +58,21 @@ namespace MiniShopApp.Data.Concrete.EFCore
                     .ToList();
             }
         }
+
+        public Product GetProductDetails(string url)
+        {
+            using (var context = new MiniShopContext())
+            {
+                return context
+                    .Products
+                    .Where(i => i.Url == url)
+                    .Include(i => i.ProductCategories)
+                    .ThenInclude(i => i.Category)
+                    .FirstOrDefault();
+                    
+            }
+        }
+
         public List<Product> GetProductsByCategory(string name, int page, int pageSize)
         {
             using (var context = new MiniShopContext())
@@ -74,7 +105,6 @@ namespace MiniShopApp.Data.Concrete.EFCore
                     .ToList();
                 return products;
             }
-            
         }
     }
 }
