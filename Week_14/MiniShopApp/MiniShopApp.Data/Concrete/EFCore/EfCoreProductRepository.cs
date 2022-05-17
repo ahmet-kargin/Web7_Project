@@ -28,6 +28,18 @@ namespace MiniShopApp.Data.Concrete.EFCore
             }
         }
 
+        public Product GetByIdWithCategories(int id)
+        {
+            using (var context = new MiniShopContext())
+            {
+                return context.Products
+                    .Where(i => i.ProductId == id)
+                    .Include(i => i.ProductCategories)
+                    .ThenInclude(i => i.Category)
+                    .FirstOrDefault();
+            }
+        }
+
         public int GetCountByCategory(string name)
         {
             using (var context = new MiniShopContext())
@@ -104,6 +116,29 @@ namespace MiniShopApp.Data.Concrete.EFCore
                     .Where(i => i.IsApproved && (i.Name.ToLower().Contains(searchString) || i.Description.ToLower().Contains(searchString)))
                     .ToList();
                 return products;
+            }
+        }
+
+        public void Update(Product entity, int[] categoryIds)
+        {
+            using (var context = new MiniShopContext())
+            {
+                var product = context.Products
+                    .Include(i => i.ProductCategories)
+                    .FirstOrDefault(i => i.ProductId == entity.ProductId);
+                product.Name = entity.Name;
+                product.Price = entity.Price;
+                product.Description = entity.Description;
+                product.Url = entity.Url;
+                product.ImageUrl = entity.ImageUrl;
+                product.IsApproved = entity.IsApproved;
+                product.IsHome = entity.IsHome;
+                product.ProductCategories = categoryIds.Select(catId => new ProductCategory()
+                {
+                    ProductId = entity.ProductId,
+                    CategoryId = catId
+                }).ToList();
+                context.SaveChanges();
             }
         }
     }
