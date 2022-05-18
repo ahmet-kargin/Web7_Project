@@ -2,6 +2,7 @@
 using MiniShopApp.Business.Abstract;
 using MiniShopApp.Entity;
 using MiniShopApp.WebUI.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,18 +35,27 @@ namespace MiniShopApp.WebUI.Controllers
         [HttpPost]
         public IActionResult ProductCreate(ProductModel model, int[] categoryIds)
         {
-            var entity = new Product()
+            if (ModelState.IsValid)
             {
-                Name = model.Name,
-                Url = model.Url,
-                Price = model.Price,
-                Description = model.Description,
-                ImageUrl = model.ImageUrl,
-                IsApproved = model.IsApproved,
-                IsHome = model.IsHome
-            };
-            _productService.Create(entity, categoryIds);
-            return RedirectToAction("ProductList");
+                var entity = new Product()
+                {
+                    Name = model.Name,
+                    Url = model.Url,
+                    Price = model.Price,
+                    Description = model.Description,
+                    ImageUrl = model.ImageUrl,
+                    IsApproved = model.IsApproved,
+                    IsHome = model.IsHome
+                };
+                if (_productService.Create(entity,categoryIds))
+                {
+                    CreateMessage("Ürün başarıyla kaydedilmiştir.","success");
+                    return RedirectToAction("ProductList");
+                }
+                CreateMessage(_productService.ErrorMessage, "danger");
+            }
+            ViewBag.Categories = _categoryService.GetAll();
+            return View(model);
         }
         public IActionResult ProductEdit(int? id)
         {
@@ -82,6 +92,21 @@ namespace MiniShopApp.WebUI.Controllers
             _productService.Update(entity, categoryIds);
             return RedirectToAction("ProductList");
         }
+        public IActionResult ProductDelete(int productId)
+        {
+            var entity = _productService.GetById(productId);
+            _productService.Delete(entity);
+            return RedirectToAction("ProductList");                    
+        }
 
+        private void CreateMessage(string message, string alertType)
+        {
+            var msg = new AlertMessage()
+            {
+                Message = message,
+                AlertType = alertType
+            };
+            TempData["Message"] = JsonConvert.SerializeObject(msg);
+        }
     }
 }

@@ -17,7 +17,10 @@ namespace MiniShopApp.Data.Concrete.EFCore
 
         public void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            using (var context = new TContext())
+            {
+                context.Set<TEntity>().Remove(entity);
+            }
         }
 
         public List<TEntity> GetAll()
