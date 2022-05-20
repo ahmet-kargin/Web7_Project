@@ -1,6 +1,5 @@
 ﻿using MiniShopApp.Business.Abstract;
 using MiniShopApp.Data.Abstract;
-using MiniShopApp.Data.Concrete.EFCore;
 using MiniShopApp.Entity;
 using System;
 using System.Collections.Generic;
@@ -17,7 +16,6 @@ namespace MiniShopApp.Business.Concrete
         {
             _productRepository = productRepository;
         }
-
 
         public void Create(Product entity)
         {
@@ -61,7 +59,8 @@ namespace MiniShopApp.Business.Concrete
 
         public List<Product> GetHomePageProducts()
         {
-            //Burada öncelikle iş kurallarını uygulayan kodlarımız olacak. Sonra aşağıdaki kodlar çalışacak.
+            //Burada öncelikle iş kurallarını uygulayan kodlarımız olacak
+            //sonra aşağıdaki kod çalışacak.
             return _productRepository.GetHomePageProducts();
         }
 
@@ -89,7 +88,6 @@ namespace MiniShopApp.Business.Concrete
         {
             _productRepository.Update(entity, categoryIds);
         }
-
         public string ErrorMessage { get; set; }
         public bool Validation(Product entity)
         {
@@ -99,7 +97,7 @@ namespace MiniShopApp.Business.Concrete
                 ErrorMessage += $"Ürün adı boş bırakılamaz.\n";
                 isValid = false;
             }
-            if (entity.Name.Length<10 || entity.Name.Length>=50)
+            if (entity.Name.Length < 10 || entity.Name.Length > 50)
             {
                 ErrorMessage += $"Ürün adı 10-20 karakter uzunluğunda olmalıdır.\n";
                 isValid = false;
@@ -109,9 +107,9 @@ namespace MiniShopApp.Business.Concrete
                 ErrorMessage += $"Ürün fiyatını giriniz.\n";
                 isValid = false;
             }
-            if (entity.Price<0 || entity.Price>100000)
+            if (entity.Price < 0 || entity.Price > 100000)
             {
-                ErrorMessage += $"Ürün fiyatı 1 ila 1000000 arasında olmalı.\n";
+                ErrorMessage += $"Ürün fiyatı 1-100000 arasında olmalıdır.\n";
                 isValid = false;
             }
             return isValid;

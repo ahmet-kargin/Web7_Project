@@ -1,6 +1,5 @@
 ﻿using MiniShopApp.Business.Abstract;
 using MiniShopApp.Data.Abstract;
-using MiniShopApp.Data.Concrete.EFCore;
 using MiniShopApp.Entity;
 using System;
 using System.Collections.Generic;
