@@ -11,12 +11,12 @@
     <partial name="_NavBar" />
     <div class="container">
         <main role="main" class="pb-3">
-            @if (TempData["Message"] !=null)
+            @if (TempData["Message"] != null)
             {
                 var message = JsonConvert.DeserializeObject<AlertMessage>(TempData["Message"]
                     as String);
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 alert">
                         <div class="alert alert-danger-@message.AlertType">
                             @message.Message
                         </div>
@@ -32,6 +32,9 @@
             &copy; 2022 - MiniShopApp.WebUI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

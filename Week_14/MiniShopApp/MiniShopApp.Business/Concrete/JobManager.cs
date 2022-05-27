@@ -12,7 +12,7 @@ namespace MiniShopApp.Business.Concrete
     {
         //Burada genel olarak tanımlamak istediğimiz, heryerde ihtiyaç duyma ihtimalimiz
         //olan metodlar yazılacak.
-        public string MakeUrl(string url)
+        public  string MakeUrl(string url)
         {
             //Kendisine gelen string değerin içindeki;
             //1)Türkçce karakterlerin yerine latin alfabesindeki karşılıklarını koyacak
@@ -35,7 +35,7 @@ namespace MiniShopApp.Business.Concrete
 
             return url;
         }
-        public string UploadImage(IFormFile file, string url)
+        public  string UploadImage(IFormFile file, string url)
         {
             var extension = Path.GetExtension(file.FileName);
             var randomName = $"{url}{Guid.NewGuid()}-{extension}";

@@ -136,5 +136,47 @@ namespace MiniShopApp.WebUI.Controllers
             };
             TempData["Message"] = JsonConvert.SerializeObject(msg);
         }
+        public IActionResult CategoryCreate()
+        {
+            ViewBag.Categories = _categoryService.GetAll();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CategoryCreate(Category entity)
+        {
+                _categoryService.Create(entity);
+                return RedirectToAction("CategoryList");
+        }
+        public IActionResult CategoryEdit(int id)
+        {
+            var entity = _categoryService.GetById(id);
+            var model = new ProductModel()
+            {
+                Name = entity.Name,
+                Url = entity.Url,
+                Description = entity.Description,
+            };
+            ViewBag.Categories = _categoryService.GetAll();
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult CategoryEdit(Category model, int[] categoryIds)
+        {
+            //Aslında üçüncü bir parametremiz de olacak. (Create'te de olacak)
+            //IFormFile tipinde resim.
+            var entity = _productService.GetById(model.CategoryId);
+            entity.Name = model.Name;
+            entity.Url = model.Url;
+            entity.Description = model.Description;
+            _productService.Update(entity, categoryIds);
+            return RedirectToAction("ProductList");
+        }
+
+        public IActionResult CategoryDelete(int categoryId)
+        {
+            var entity = _categoryService.GetById(categoryId);
+            _categoryService.Delete(entity);
+            return RedirectToAction("ProductList");
+        }
     }
 }
