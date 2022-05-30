@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using MiniShopApp.Business.Abstract;
 using MiniShopApp.Business.Concrete;
 using MiniShopApp.Data.Abstract;
 using MiniShopApp.Data.Concrete.EFCore;
+using MiniShopApp.WebUI.EmailServices;
 using MiniShopApp.WebUI.Identity;
 using System;
 using System.Collections.Generic;
@@ -60,11 +62,34 @@ namespace MiniShopApp.WebUI
 
             });
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/account/login";
+                options.LogoutPath = "/account/logout";
+                options.AccessDeniedPath = "/account/accessdenied";
+                options.SlidingExpiration = true; //Her requestte timespan(20dk) tekrardan baþlar .
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                options.Cookie = new CookieBuilder()
+                {
+                    HttpOnly = true,
+                    Name ="MiniShopApp.Security.Cookie"
+                };
+            });
             services.AddScoped<IProductRepository, EfCoreProductRepository>();
             services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
 
             services.AddScoped<IProductService, ProductManager>();
+            //Proje boyunca ICategoryService çaðrýldýðýnda, CategoryManager'ý kullanýn.
             services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<IEmailSender, SmtpEmailSender>(i => new SmtpEmailSender(
+                Configuration["EmailSender:Host"],
+                Configuration.GetValue<int>("EmailSender:Port"),
+                Configuration.GetValue<bool>("EmailSender:EnableSSL"),
+                Configuration["EmailSender:UserName"],
+                Configuration["EmailSender:Password"]
+
+                ));
+
             services.AddControllersWithViews();
         }
 

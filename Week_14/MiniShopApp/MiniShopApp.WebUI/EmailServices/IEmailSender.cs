@@ -11,28 +11,4 @@ namespace MiniShopApp.WebUI.EmailServices
     {
         Task SendEmailAsync(string email, string subject, string htmlMessage);
     }
-     public class SmtpEmailSender: IEmailSender
-    {
-        private string _host;
-        private int _port;
-        private bool _enableSSL;
-        private string _userName;
-        private string _password;
-
-        public Task SendEmailAsync(string email, string subject, string htmlMessage)
-        {
-            var client = new SmtpClient(this._host, this._port)
-            {
-                Credentials = new NetworkCredential(_userName,_password),
-                EnableSsl=this._enableSSL
-            };
-            return client.SendMailAsync(
-                new MailMessage(this._userName,email,subject,htmlMessage)
-                {
-                    IsBodyHtml=true
-                });
-        }
-    }
-   
-    
 }
