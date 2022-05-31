@@ -117,6 +117,70 @@ namespace MiniShopApp.WebUI.Controllers
             CreateMessage("Hesabınız onaylanmamıştır! Lütfen daha sonra tekrar deneyiniz!", "danger");
             return View();
         }
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(string email)
+        {
+            if (String.IsNullOrEmpty(email))
+            {
+                CreateMessage("Lütfen email adresininzi giriniz", "warning");
+                return View();
+            }
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user==null)
+            {
+                CreateMessage("Böyle bir email adresi bulunamadı! Lütfen kontrol ederek, tekrar deneyiniz", "danger");
+                return View();
+            }
+            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var url = Url.Action("ResetPassword", "Account", new
+            {
+                userId=user.Id,
+                token=code
+            });
+            await _emailSender.SendEmailAsync(
+                email,"MiniShopApp Şifre Sıfırlama",$"Lütfen parolanızı yenilemek için <a href='https://localhost:5001{url}'>tıklayınız</a>");
+            CreateMessage("Şifre sıfırlama linki kayıtlı mail adresine gönderilmiştir. Lütfen kontrol ediniz.", "warning");
+            return  RedirectToAction("Login");
+        }
+        public IActionResult ResetPassword(string userId, string token)
+        {
+            if (userId==null || token==null)
+            {
+                CreateMessage("Bir sorun oluştu. Daha sonra yeniden deneyiniz", "danger");
+                return RedirectToAction("Index", "Home");
+            }
+            var model = new ResetPasswordModel()
+            {
+                Token=token
+            };
+            return View(token);
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user==null)
+            {
+                CreateMessage("Bir sorun oluştu, lütfen bilgileri kontrol ederek yeniden deneyiniz.", "danger");
+                return View();
+            }
+            var result = await _userManager.ResetPasswordAsync(
+                user, model.Token, model.Password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Login");
+            }
+            CreateMessage("Bir sorun oluştu, lütfen bilgileri kontrol ederek yeniden deneyiniz.", "danger");
+            return Redirect("~/");
+        }
         private void CreateMessage(string message, string alertType)
         {
             var msg = new AlertMessage()
