@@ -14,6 +14,5 @@ namespace MiniShopApp.Business.Abstract
         void Create(Category entity);
         void Update(Category entity);
         void Delete(Category entity);
-
     }
 }

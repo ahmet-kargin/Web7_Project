@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace MiniShopApp.Entity
+﻿namespace MiniShopApp.Entity
 {
-    public class ProductCategory //Category ile Product arası çoka-çok ilişki sağlar.
-        //Junction table yaparak(ProductCategory) istediğimiz sorguyu yapabiliriz iki tablo arasındaki veriler için
+    public class ProductCategory
     {
         public int CategoryId { get; set; }
         public Category Category { get; set; }

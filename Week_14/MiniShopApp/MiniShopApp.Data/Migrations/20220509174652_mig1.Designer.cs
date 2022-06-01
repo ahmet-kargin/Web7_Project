@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MiniShopApp.Data.Concrete.EFCore;
+using MiniShopApp.Data.Concrete.EfCore;
 
 namespace MiniShopApp.Data.Migrations
 {

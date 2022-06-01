@@ -18,14 +18,12 @@ namespace MiniShopApp.Business.Concrete
         }
         public void Create(Category entity)
         {
-            _categoryRepository.Create(entity);
+            throw new NotImplementedException();
         }
-
-        
 
         public void Delete(Category entity)
         {
-            _categoryRepository.Delete(entity);
+            throw new NotImplementedException();
         }
 
         public List<Category> GetAll()
@@ -35,12 +33,12 @@ namespace MiniShopApp.Business.Concrete
 
         public Category GetById(int id)
         {
-            return _categoryRepository.GetById(id);
+            throw new NotImplementedException();
         }
 
         public void Update(Category entity)
         {
-            _categoryRepository.Update(entity);
+            throw new NotImplementedException();
         }
     }
 }

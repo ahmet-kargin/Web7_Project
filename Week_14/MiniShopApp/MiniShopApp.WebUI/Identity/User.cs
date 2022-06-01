@@ -8,7 +8,7 @@ namespace MiniShopApp.WebUI.Identity
 {
     public class User : IdentityUser
     {
-        //Hazır Tablolar yaratıldı üzerine ek olarak user tablosunda bu alanların olmasını da istediğimizi belirtelim.
+        //Hazır tablolar yaratıldı, üzerine ek olarak user tablosunda bu alanların olmasını da istediğimi belirttim.
         public string FirstName { get; set; }
         public string LastName { get; set; }
     }

@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace MiniShopApp.Data.Abstract
 {
-    public interface ICategoryRepository: IRepository<Category>
+    public interface ICategoryRepository : IRepository<Category>
     {
-        //Burada IRepository içindeki tüm memberler var.
-        //Ayrıca buraya Category entitysini ilgilendiren memberları yazabiliriz.
-        Category GetByIdWithProducts(int id);
+        Category GetByIdWithCategories(int categoryId);
     }
 }

@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MiniShopApp.Data.Concrete.EFCore
+namespace MiniShopApp.Data.Concrete.EfCore
 {
-    public class EfCoreGenericRepository<TEntity, TContext> : IRepository<TEntity> where TEntity:class where TContext:DbContext, new()
+    public class EfCoreGenericRepository<TEntity, TContext> : IRepository<TEntity>
+        where TEntity: class
+        where TContext: DbContext, new()
     {
         public void Create(TEntity entity)
         {
@@ -20,6 +22,7 @@ namespace MiniShopApp.Data.Concrete.EFCore
             using (var context = new TContext())
             {
                 context.Set<TEntity>().Remove(entity);
+                context.SaveChanges();
             }
         }
 

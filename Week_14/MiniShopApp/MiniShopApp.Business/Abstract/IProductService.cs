@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MiniShopApp.Business.Abstract
 {
-    public interface IProductService :IValidator<Product>
+    public interface IProductService
     {
         Product GetById(int id);
         List<Product> GetAll();
@@ -15,11 +15,11 @@ namespace MiniShopApp.Business.Abstract
         void Update(Product entity);
         void Delete(Product entity);
         List<Product> GetProductsByCategory(string name, int page, int pageSize);
+        Product GetProductDetails(string url);
         List<Product> GetHomePageProducts();
         List<Product> GetSearchResult(string searchString);
-        int GetCountByCategory(string name);
-        Product GetProductDetails(string url);
-        bool Create(Product entity, int[] categoryIds);
+        int GetCountByCategory(string category);
+        void Create(Product entity, int[] categoryIds);
         void Update(Product entity, int[] categoryIds);
         Product GetByIdWithCategories(int id);
     }

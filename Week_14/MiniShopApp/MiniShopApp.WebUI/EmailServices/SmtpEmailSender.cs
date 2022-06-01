@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace MiniShopApp.WebUI.EmailServices
 {
-    public class SmtpEmailSender : IEmailSender
+    public class SmtpEmailSender: IEmailSender
     {
         private string _host;
         private int _port;
@@ -14,7 +14,7 @@ namespace MiniShopApp.WebUI.EmailServices
 
         public SmtpEmailSender(string host, int port, bool enableSSL, string userName, string password)
         {
-            //Dependecy Injecion
+            //Depenency Injection
             _host = host;
             _port = port;
             _enableSSL = enableSSL;

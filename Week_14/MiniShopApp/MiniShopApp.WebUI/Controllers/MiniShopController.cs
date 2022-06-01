@@ -14,43 +14,64 @@ namespace MiniShopApp.WebUI.Controllers
         private IProductService _productService;
         public MiniShopController(IProductService productService)
         {
-            _productService = productService;
+            _productService=productService;
         }
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult List(string category, int page=1) 
+
+        public IActionResult List(string category, int page=1)
         {
-            const int pageSize = 3;
+            ViewBag.Message = "Ürün bulunamadı";
+            ViewBag.AlertType = "warning";
+            //ÖDEV:
+            //Bu işi ister model kullanarak şu an olduğu gibi partial yapıyla
+            //İsterseniz ise daha farklı bir yol olarak ViewComponent mantığıyla
+            //Çözün.
+
+            //***********************************
+
+            const int pageSize = 5;//bu değişken her sayfada kaç item görüneceğini tutacak
             int totalItems = _productService.GetCountByCategory(category);
             var productListViewModel = new ProductListViewModel()
             {
                 PageInfo = new PageInfo
                 {
-                    TotalItems=totalItems,
-                    CurrentPage=page,
+                    TotalItems= totalItems,
+                    CurrentPage= page,
                     ItemsPerPage= pageSize,
-                    CurrentyCategory=category
+                    CurrentCategory = category
                 },
-                Products = _productService.GetProductsByCategory(category,page,pageSize)
+                Products= _productService.GetProductsByCategory(category, page, pageSize)
             };
+            return View(productListViewModel); 
+        }
 
-            return View(productListViewModel);
-        }
-        public IActionResult Search(string searchString)
-        {
-            return View(_productService.GetSearchResult(searchString)); //Method yazılıp tekrar gelinecek buraya
-        }
         public IActionResult Details(string url)
         {
+            if (url==null)
+            {
+                return NotFound();
+            }
             Product product = _productService.GetProductDetails(url);
-            ProductDetailModel productDetailModel = new ProductDetailModel()
+            if (product==null)
+            {
+                return NotFound();
+            }
+            ProductDetailModel productDetail = new ProductDetailModel()
             {
                 Product = product,
-                categories = product.ProductCategories.Select(i => i.Category).ToList()
+                Categories = product.ProductCategories.Select(i => i.Category).ToList() 
             };
-            return View(productDetailModel);
+            return View(productDetail);  
+        }
+
+        public IActionResult Search(string q)
+        {
+            //Bize arama kriterinin (q) uygun olduğu, eşleştiği TÜM ÜRÜNLERİ
+            //döndürecek bir METOT lazım.
+            return View(_productService.GetSearchResult(q)); 
         }
     }
 }

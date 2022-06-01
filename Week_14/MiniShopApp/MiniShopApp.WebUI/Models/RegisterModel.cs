@@ -19,10 +19,10 @@ namespace MiniShopApp.WebUI.Models
         public string Password { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        [Compare("Password")]//Yukarıdaki password alanı ile aynı olmak zorunda.
+        [Compare("Password")]//Yukarıdaki password alanı ile aynı olmak zorunda!
         public string RePassword { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
-        public string EMail { get; set; }
+        public string Email { get; set; }
     }
 }
