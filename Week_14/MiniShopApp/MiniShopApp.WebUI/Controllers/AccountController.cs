@@ -23,6 +23,10 @@ namespace MiniShopApp.WebUI.Controllers
             _signInManager = signInManager;
             _emailSender = emailSender;
         }
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             return View();

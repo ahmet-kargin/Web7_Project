@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace MiniShopApp.WebUI.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")] // Direk login sayfasına bağlanmayı sağlar. Eğer loginse gitmez. Sadece Admin girebliri Login olarak.
     public class AdminController : Controller
     {
         private readonly IProductService _productService;
@@ -30,9 +30,13 @@ namespace MiniShopApp.WebUI.Controllers
             _productService = productService;
             _categoryService = categoryService;
             _roleManager = roleManager;
-            _userManager = userManager; 
+            _userManager = userManager;
         }
 
+        public IActionResult UserList()
+        {
+            return View(_userManager.Users);
+        }
         public IActionResult RoleList()
         {
             return View(_roleManager.Roles);
@@ -80,6 +84,45 @@ namespace MiniShopApp.WebUI.Controllers
             };
             return View(model);
         }
+        [HttpPost]
+        public async Task<IActionResult> RoleEdit(RoleEditDetails model)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var userId in model.IdsToAdd ?? new string[] { })
+                {
+                    var user = await _userManager.FindByIdAsync(userId);
+                    if (user != null)
+                    {
+                        var result = await _userManager.AddToRoleAsync(user, model.RoleName);
+                        if (!result.Succeeded)
+                        {
+                            foreach (var error in result.Errors)
+                            {
+                                ModelState.AddModelError("", error.Description);
+                            }
+                        }
+                    }
+                }
+
+                foreach (var userId in model.IdsToDelete ?? new string[] { })
+                {
+                    var user = await _userManager.FindByIdAsync(userId);
+                    if (user != null)
+                    {
+                        var result = await _userManager.RemoveFromRoleAsync(user, model.RoleName);
+                        if (!result.Succeeded)
+                        {
+                            foreach (var error in result.Errors)
+                            {
+                                ModelState.AddModelError("", error.Description);
+                            }
+                        }
+                    }
+                }
+            }
+            return Redirect("/admin/role/" + model.RoleId);
+        }
         public IActionResult ProductList()
         {
             return View(_productService.GetAll());
@@ -92,7 +135,7 @@ namespace MiniShopApp.WebUI.Controllers
         [HttpPost]
         public IActionResult ProductCreate(ProductModel model, int[] categoryIds, IFormFile file)
         {
-            if (ModelState.IsValid && categoryIds.Length>0 && file!=null)
+            if (ModelState.IsValid && categoryIds.Length > 0 && file != null)
             {
                 var url = JobManager.MakeUrl(model.Name);
                 model.ImageUrl = JobManager.UploadImage(file, url);
@@ -113,7 +156,7 @@ namespace MiniShopApp.WebUI.Controllers
             }
             //İşler yolunda gitmediyse
 
-            if (categoryIds.Length>0)
+            if (categoryIds.Length > 0)
             {
                 model.SelectedCategories = categoryIds.Select(catId => new Category()
                 {
@@ -125,7 +168,7 @@ namespace MiniShopApp.WebUI.Controllers
                 ViewBag.CategoryMessage = "Lütfen en az bir kategori seçiniz!";
             }
 
-            if (file==null)
+            if (file == null)
             {
                 ViewBag.ImageMessage = "Lütfen bir resim seçiniz!";
             }
@@ -136,25 +179,25 @@ namespace MiniShopApp.WebUI.Controllers
         public IActionResult ProductEdit(int? id)
         {
 
-                var entity = _productService.GetByIdWithCategories((int)id);
-                var model = new ProductModel()
-                {
-                    ProductId = entity.ProductId,
-                    Name = entity.Name,
-                    Url = entity.Url,
-                    Price = entity.Price,
-                    Description = entity.Description,
-                    ImageUrl = entity.ImageUrl,
-                    IsApproved = entity.IsApproved,
-                    IsHome = entity.IsHome,
-                    SelectedCategories = entity
-                        .ProductCategories
-                        .Select(i => i.Category)
-                        .ToList()
-                };
-                ViewBag.Categories = _categoryService.GetAll();
-                return View(model);
-            
+            var entity = _productService.GetByIdWithCategories((int)id);
+            var model = new ProductModel()
+            {
+                ProductId = entity.ProductId,
+                Name = entity.Name,
+                Url = entity.Url,
+                Price = entity.Price,
+                Description = entity.Description,
+                ImageUrl = entity.ImageUrl,
+                IsApproved = entity.IsApproved,
+                IsHome = entity.IsHome,
+                SelectedCategories = entity
+                    .ProductCategories
+                    .Select(i => i.Category)
+                    .ToList()
+            };
+            ViewBag.Categories = _categoryService.GetAll();
+            return View(model);
+
         }
         [HttpPost]
         public IActionResult ProductEdit(ProductModel model, int[] categoryIds, IFormFile file)
@@ -166,7 +209,7 @@ namespace MiniShopApp.WebUI.Controllers
                 var url = JobManager.MakeUrl(model.Name);
                 model.ImageUrl = JobManager.UploadImage(file, url);
                 var entity = _productService.GetById(model.ProductId);
-                if (entity==null)
+                if (entity == null)
                 {
                     return NotFound();
                 }
