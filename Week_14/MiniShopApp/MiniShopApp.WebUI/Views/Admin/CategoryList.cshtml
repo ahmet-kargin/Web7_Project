@@ -1,39 +1,36 @@
 ﻿@model List<Category>
+
+
+
 <div class="row">
     <div class="col-md-12">
-        <h6 class="display-4">Admin Category Manager</h6>
+        <h4 class="display-4">Category List</h4>
         <hr />
-        <a href="/admin/products/create" class="btn btn-sm btn-primary">Create Category</a>
-        <table class="table table-bordered mt-3">
+        <table class="table table-dark">
             <thead>
                 <tr>
-                    <th width="30">ID</th>
-                    <th>Name</th>
-                    <th width="70">Description</th>
-                    <th>Url</th>
+                    <th>Category ID</th>
+                    <th>Category Name</th>
+                    <th>Category Description</th>
+                    <th>Category URL</th>
                 </tr>
             </thead>
             <tbody>
-                @if (Model.Count > 0)
+                @foreach (var category in Model)
                 {
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.CategoryId</td>
-                            <td>@item.Name</td>
-                            <td>
-                                <a href="/admin/products/@item.CategoryId" class="btn btn-sm btn-primary mr-2">Edit</a>
-                                <form action="/Admin/CategoryDelete" method="post" class="d-inline">
-                                    <input type="hidden" name="productId" value="@item.CategoryId" />
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    }
-                }
-                else
-                {
-                    //Buraya ürün olmadığında yapılacaklar gelecek
+                    <tr>
+                        <td>@category.CategoryId</td>
+                        <td>@category.Name</td>
+                        <td>@category.Description</td>
+                        <td>@category.Url</td>
+                        <td>
+                            <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                            <form>
+                                <input type="hidden" name="categoryId" value="@category.CategoryId" />
+                                <button type="submit" class="btn btn-sm btn-danger"></button>
+                            </form>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>

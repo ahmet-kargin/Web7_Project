@@ -9,7 +9,7 @@ using MiniShopApp.Data.Concrete.EfCore;
 namespace MiniShopApp.Data.Migrations
 {
     [DbContext(typeof(MiniShopContext))]
-    [Migration("20220606061812_WithCardEntities")]
+    [Migration("20220606061719_WithCardEntities")]
     partial class WithCardEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,14 +20,14 @@ namespace MiniShopApp.Data.Migrations
 
             modelBuilder.Entity("MiniShopApp.Entity.Card", b =>
                 {
-                    b.Property<int>("CardId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("UserId")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("CardId");
+                    b.HasKey("Id");
 
                     b.ToTable("Cards");
                 });
@@ -126,7 +126,7 @@ namespace MiniShopApp.Data.Migrations
             modelBuilder.Entity("MiniShopApp.Entity.CardItem", b =>
                 {
                     b.HasOne("MiniShopApp.Entity.Card", "Card")
-                        .WithMany("cardItems")
+                        .WithMany("CardItems")
                         .HasForeignKey("CardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -163,7 +163,7 @@ namespace MiniShopApp.Data.Migrations
 
             modelBuilder.Entity("MiniShopApp.Entity.Card", b =>
                 {
-                    b.Navigation("cardItems");
+                    b.Navigation("CardItems");
                 });
 
             modelBuilder.Entity("MiniShopApp.Entity.Category", b =>

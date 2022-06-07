@@ -2,57 +2,21 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniShopApp.Data.Concrete.EfCore;
 
 namespace MiniShopApp.Data.Migrations
 {
     [DbContext(typeof(MiniShopContext))]
-    partial class MiniShopContextModelSnapshot : ModelSnapshot
+    [Migration("20220509114528_mig1")]
+    partial class mig1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.16");
-
-            modelBuilder.Entity("MiniShopApp.Entity.Card", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cards");
-                });
-
-            modelBuilder.Entity("MiniShopApp.Entity.CardItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CardId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CardId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CardItems");
-                });
 
             modelBuilder.Entity("MiniShopApp.Entity.Category", b =>
                 {
@@ -121,25 +85,6 @@ namespace MiniShopApp.Data.Migrations
                     b.ToTable("ProductCategories");
                 });
 
-            modelBuilder.Entity("MiniShopApp.Entity.CardItem", b =>
-                {
-                    b.HasOne("MiniShopApp.Entity.Card", "Card")
-                        .WithMany("CardItems")
-                        .HasForeignKey("CardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MiniShopApp.Entity.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Card");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("MiniShopApp.Entity.ProductCategory", b =>
                 {
                     b.HasOne("MiniShopApp.Entity.Category", "Category")
@@ -157,11 +102,6 @@ namespace MiniShopApp.Data.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("MiniShopApp.Entity.Card", b =>
-                {
-                    b.Navigation("CardItems");
                 });
 
             modelBuilder.Entity("MiniShopApp.Entity.Category", b =>

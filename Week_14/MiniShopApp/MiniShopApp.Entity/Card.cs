@@ -8,8 +8,8 @@ namespace MiniShopApp.Entity
 {
     public class Card
     {
-        public int CardId { get; set; }
+        public int Id { get; set; }
         public string UserId { get; set; }
-        public List<CardItem> cardItems { get; set; }
+        public List<CardItem> CardItems { get; set; }
     }
 }

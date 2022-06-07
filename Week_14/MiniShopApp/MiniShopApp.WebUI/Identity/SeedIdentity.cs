@@ -9,8 +9,7 @@ namespace MiniShopApp.WebUI.Identity
 {
     public static class SeedIdentity
     {
-        public static async Task Seed(UserManager<User> userManager, RoleManager<IdentityRole> roleManager,
-            IConfiguration configuration)
+        public static async Task Seed(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
             //Admin oluşturma kodları
             var adminUserName = configuration["UserData:AdminUser:UserName"];
@@ -34,6 +33,7 @@ namespace MiniShopApp.WebUI.Identity
                     await userManager.AddToRoleAsync(adminUser, adminRole);
                 }
             }
+
             //User oluşturma kodları
             var userUserName = configuration["UserData:CustomerUser:UserName"];
             var userEmail = configuration["UserData:CustomerUser:Email"];
