@@ -73,10 +73,12 @@ namespace MiniShopApp.WebUI
             services.AddScoped<IProductRepository, EfCoreProductRepository>();
             services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
             services.AddScoped<ICardRepository, EfCoreCardRepository>();
+            services.AddScoped<IOrderRepository, EfCoreOrderRepository>();
 
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICardService, CardManager>();
+            services.AddScoped<IOrderService, OrderManager>();
 
 
 
@@ -122,10 +124,11 @@ namespace MiniShopApp.WebUI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                   name: "checkout",
-                   pattern: "checkout",
-                   defaults: new { controller = "Card", action = "CheckOut" }
-                   );
+                    name: "checkout",
+                    pattern: "checkout",
+                    defaults: new { controller = "Card", action = "CheckOut" }
+                    );
+
                 endpoints.MapControllerRoute(
                     name: "card",
                     pattern: "card",
