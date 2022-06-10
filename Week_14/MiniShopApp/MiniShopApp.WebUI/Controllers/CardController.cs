@@ -51,6 +51,39 @@ namespace MiniShopApp.WebUI.Controllers
             };
             return View(model);
         }
+        public IActionResult GetOrders()
+        {
+            var userId = _userManager.GetUserId(User);
+            var orders = _orderService.GetOrders(userId);
+            var orderListModel = new List<OrderListModel>();
+            OrderListModel orderModel;
+            foreach (var order in orders)
+            {
+                orderModel = new OrderListModel();
+                orderModel.OrderId = order.Id;
+                orderModel.OrderNumber = order.OrderNumber;
+                orderModel.OrderDate = order.OrderDate;
+                orderModel.FirstName = order.FirstName;
+                orderModel.LastName = order.LastName;
+                orderModel.Address = order.Address;
+                orderModel.City = order.City;
+                orderModel.Phone = order.Phone;
+                orderModel.Email = order.Email;
+                orderModel.OrderState = order.OrderState;
+                orderModel.PaymentType = order.PaymentType;
+                orderModel.OrderItems = order.OrderItems.Select(i => new OrderItemModel()
+                {
+                    OrderItemId=i.Id,
+                    Name=i.Product.Name,
+                    Price=(double)i.Price,
+                    Quantity=i.Quantity,
+                    ImageUrl=i.Product.ImageUrl
+                }).ToList();
+                orderListModel.Add(orderModel);
+            }
+            return View("Orders",orderListModel);
+        }
+
         [HttpPost]
         public IActionResult AddToCard(int productId, int quantity)
         {
@@ -109,6 +142,11 @@ namespace MiniShopApp.WebUI.Controllers
                     }).ToList()
                 };
                 //Ödeme alma işlemine başlayacağız
+                if (!CardNumberControl(orderModel.CardNumber)) 
+                {
+                    TempData["Message"] = JobManager.CreateMessage("HATA!", "Kart Numarası Hatalıdır!", "danger");
+                    return View("Success");
+                }
                 var payment = PaymentProcess(orderModel);
                 if (payment.Status=="success")
                 {
@@ -126,6 +164,54 @@ namespace MiniShopApp.WebUI.Controllers
             return View(orderModel);
         }
 
+        private bool CardNumberControl(string cardNumber)
+        {
+            var cardNumberLenght = cardNumber.Length;
+            int total = 0;
+            if (cardNumberLenght != 16)
+            {
+                return false;
+            }
+            else
+            {
+                int evenTotal = 0;
+                int oddTotal = 0;
+                for (int i = 0; i < cardNumberLenght; i++)
+                {
+                    int nextNumber = Convert.ToInt32(cardNumber[i].ToString());
+                    if (i % 2 == 0)
+                    {
+                        oddTotal += Convert.ToInt32(NumberControl((nextNumber * 2).ToString()));
+                    }
+                    else
+                    {
+                        evenTotal += nextNumber;
+                    }
+                }
+                total = evenTotal + oddTotal;
+            }
+            if (total % 10 == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        private int NumberControl(string number)
+        {
+            int numberLenght = number.Length;
+            if (numberLenght==1)
+            {
+                return Convert.ToInt32(number);
+            }
+            int total = 0;
+            for (int i = 0; i < numberLenght; i++)
+            {
+                total += Convert.ToInt32(number[i].ToString());
+
+            }
+            return total;
+
+        }
         private void SaveOrder(OrderModel orderModel, Payment payment, string userId)
         {
             var order = new Order();
@@ -236,5 +322,6 @@ namespace MiniShopApp.WebUI.Controllers
             request.BasketItems = basketItems;
             return Payment.Create(request, options);
         }
+       
     }
 }
