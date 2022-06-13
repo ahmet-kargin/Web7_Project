@@ -8,23 +8,32 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MiniShopApp.Data.Concrete.EfCore
-{
-    public class EfCoreOrderRepository : EfCoreGenericRepository<Order, MiniShopContext>, IOrderRepository
+{ 
+    public class EfCoreOrderRepository : EfCoreGenericRepository<Order>, IOrderRepository
     {
-        public List<Order> GetOrders(string userId)
+    
+        public EfCoreOrderRepository(MiniShopContext context) : base(context)
         {
-            using (var context = new MiniShopContext())
-            {
-                var orders = context.Orders
-                    .Include(i => i.OrderItems)
-                    .ThenInclude(i => i.Product)
-                    .AsQueryable(); //Asqueryable= Üzerinde sorgu yapmaya müsait hale getirmek için yapılan metod
-                if (!String.IsNullOrEmpty(userId))
-                {
-                    orders = orders.Where(i => i.UserId == userId);
-                }
-                return orders.ToList();
-            }
+
         }
+        private MiniShopContext MiniShopContext
+        {
+            get { return _context as MiniShopContext; }
+        }
+        public List<Order> GetOrders(string userId)
+            {
+          
+                    var orders = MiniShopContext.Orders
+                        .Include(i => i.OrderItems)
+                        .ThenInclude(i => i.Product)
+                        .AsQueryable(); //Asqueryable= Üzerinde sorgu yapmaya müsait hale getirmek için yapılan metod
+                    if (!String.IsNullOrEmpty(userId))
+                    {
+                        orders = orders.Where(i => i.UserId == userId);
+                    }
+                    return orders.ToList();
+            
+            }
     }
 }
+
