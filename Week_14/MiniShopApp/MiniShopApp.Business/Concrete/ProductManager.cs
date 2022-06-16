@@ -42,7 +42,7 @@ namespace MiniShopApp.Business.Concrete
             _unitOfWork.Save();
         }
 
-        public async Task<List<Product>>  GetAll()
+        public async Task<List<Product>> GetAll()
         {
             //Burada ürünlerin listelenmesi sağlanıyor.
             //Fakat ürün listeleme yapan metot çalıştırılmadan önce
@@ -97,5 +97,10 @@ namespace MiniShopApp.Business.Concrete
             _unitOfWork.Save();
         }
 
+        public async Task UpdateProductAsync(Product entityToUpdate, Product entity)
+        {
+            _unitOfWork.Products.UpdateProduct(entityToUpdate, entity);
+            await _unitOfWork.SaveAsync();
+        }
     }
 }
