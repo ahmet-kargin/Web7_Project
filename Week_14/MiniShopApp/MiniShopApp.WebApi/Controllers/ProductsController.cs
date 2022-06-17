@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MiniShopApp.Business.Abstract;
 using MiniShopApp.Entity;
+using MiniShopApp.WebApi.Controllers.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,12 @@ namespace MiniShopApp.WebApi.Controllers
         public async Task<IActionResult>  GetProducts()
         {
             var products =await _productService.GetAll();
+            //DTO(Data Transfer Object) kullanarak, veriyi istek sahibine belirlediğimiz bilgileri içerecek şekilde yollayacağız.
+            var productsDTO = new List<ProductDTO>();
+            foreach (var product in products)
+            {
+                productsDTO.Add(ProductToDTO(product));
+            }
             return Ok(products);
         }
         [HttpGet("{id}")]
@@ -32,13 +39,13 @@ namespace MiniShopApp.WebApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(product);
+            return Ok(ProductToDTO(product));
         }
         [HttpPost]
         public async Task<IActionResult> CreateProduct(Product entity)
         {
             await _productService.CreateAsync(entity);
-            return CreatedAtAction(nameof(GetProduct), new {id = entity.ProductId }, entity);
+            return CreatedAtAction(nameof(GetProduct), new {id = entity.ProductId }, ProductToDTO(entity));
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, Product entity)
@@ -65,6 +72,19 @@ namespace MiniShopApp.WebApi.Controllers
             }
             _productService.Delete(product);
             return NoContent();
+        }
+        private static ProductDTO ProductToDTO(Product product)
+        {
+            var productDTO = new ProductDTO
+            {
+                ProductId = product.ProductId,
+                Name = product.Name,
+                Price = product.Price,
+                Description = product.Description,
+                ImageUrl = product.ImageUrl,
+                Url = product.Url
+            };
+            return productDTO;
         }
     }
 }
