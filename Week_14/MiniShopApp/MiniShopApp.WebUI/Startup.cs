@@ -181,32 +181,33 @@ namespace MiniShopApp.WebUI
                     defaults: new { controller = "Admin", action = "RoleEdit" }
                     );
 
-
+                endpoints.MapControllerRoute(
+                   name: "adminproducts",
+                   pattern: "admin/products",
+                   defaults: new { controller = "Admin", action = "ProductList" }
+                   );
                 endpoints.MapControllerRoute(
                     name: "adminproductcreate",
                     pattern: "admin/products/create",
                     defaults: new { controller = "Admin", action = "ProductCreate" }
                     );
                 endpoints.MapControllerRoute(
-                    name: "adminproducts",
-                    pattern: "admin/products",
-                    defaults: new { controller = "Admin", action = "ProductList" }
-                    );
-                endpoints.MapControllerRoute(
                     name: "search",
                     pattern: "search",
                     defaults: new { controller = "MiniShop", action = "Search" }
                     );
+                
                 endpoints.MapControllerRoute(
                    name: "products",
                    pattern: "products/{category?}",
                    defaults: new { controller = "MiniShop", action = "List" }
                    );
                 endpoints.MapControllerRoute(
-                    name: "adminproductedit",
-                    pattern: "admin/products/{id?}",
-                    defaults: new { controller = "Admin", action = "ProductEdit" }
-                    );
+                   name: "adminproductedit",
+                   pattern: "admin/products/{id?}",
+                   defaults: new { controller = "Admin", action = "ProductEdit" }
+                   );
+
                 endpoints.MapControllerRoute(
                     name: "productdetails",
                     pattern: "{url}",

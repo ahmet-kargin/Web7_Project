@@ -276,28 +276,29 @@ namespace MiniShopApp.WebUI.Controllers
             return View(model);
 
         }
-        public async Task<IActionResult>  ProductEdit(int? id)
+        public async Task<IActionResult> ProductEdit(int? id)
         {
-                var categories= await _categoryService.GetAll();
-                var entity = _productService.GetByIdWithCategories((int)id);
-                var model = new ProductModel()
-                {
-                    ProductId = entity.ProductId,
-                    Name = entity.Name,
-                    Url = entity.Url,
-                    Price = entity.Price,
-                    Description = entity.Description,
-                    ImageUrl = entity.ImageUrl,
-                    IsApproved = entity.IsApproved,
-                    IsHome = entity.IsHome,
-                    SelectedCategories = entity
-                        .ProductCategories
-                        .Select(i => i.Category)
-                        .ToList()
-                };
-                ViewBag.Categories = categories;
-                return View(categories);
-            
+
+            var entity = _productService.GetByIdWithCategories((int)id);
+            var model = new ProductModel()
+            {
+                ProductId = entity.ProductId,
+                Name = entity.Name,
+                Url = entity.Url,
+                Price = entity.Price,
+                Description = entity.Description,
+                ImageUrl = entity.ImageUrl,
+                IsApproved = entity.IsApproved,
+                IsHome = entity.IsHome,
+                SelectedCategories = entity
+                    .ProductCategories
+                    .Select(i => i.Category)
+                    .ToList()
+            };
+            var categories = await _categoryService.GetAll();
+            ViewBag.Categories = categories;
+            return View(model);
+
         }
         [HttpPost]
         public async Task<IActionResult> ProductEdit(ProductModel model, int[] categoryIds, IFormFile file)
@@ -309,7 +310,7 @@ namespace MiniShopApp.WebUI.Controllers
                 var url = JobManager.MakeUrl(model.Name);
                 model.ImageUrl = JobManager.UploadImage(file, url);
                 var entity = await _productService.GetById(model.ProductId);
-                if (entity==null)
+                if (entity == null)
                 {
                     return NotFound();
                 }
@@ -322,7 +323,7 @@ namespace MiniShopApp.WebUI.Controllers
                 entity.IsHome = model.IsHome;
                 entity.ImageUrl = model.ImageUrl;
                 _productService.Update(entity, categoryIds);
-                TempData["Message"] = JobManager.CreateMessage("","Ürün başarıyla güncellenmiştir.", "success");
+                TempData["Message"] = JobManager.CreateMessage("", "Ürün başarıyla güncellenmiştir.", "success");
                 return RedirectToAction("ProductList");
             }
             if (categoryIds.Length > 0)
@@ -341,7 +342,8 @@ namespace MiniShopApp.WebUI.Controllers
             {
                 ViewBag.ImageMessage = "Lütfen bir resim seçiniz!";
             }
-            ViewBag.Categories = _categoryService.GetAll();
+            var categories = await _categoryService.GetAll();
+            ViewBag.Categories = categories;
             return View(model);
         }
 
