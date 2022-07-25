@@ -22,9 +22,9 @@ namespace MiniShopApp.Data.Concrete.EfCore
         private string ConvertLower(string text)
         {
             //İstanbul Irak Üzgün Şelaler Satırarası
-            text = text.Replace("I", "i");//İstanbul irak Üzgün Şelaleler Satırarası
-            text = text.Replace("İ", "i");//istanbul irak Üzgün Şelaleler Satırarası
-            text = text.Replace("ı", "i");//istanbul irak Üzgün Şelaleler Satirarasi
+            text = text.Replace("I", "i");//İstanbul  irak Üzgün Şelaleler Satırarası
+            text = text.Replace("İ", "i");//istanbul  irak Üzgün Şelaleler Satırarası
+            text = text.Replace("ı", "i");//istanbul  irak Üzgün Şelaleler Satirarasi
 
             text = text.ToLower();//istanbul irak üzgün şelaleler satirarasi
             text = text.Replace("ç", "c");
