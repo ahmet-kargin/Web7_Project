@@ -250,7 +250,7 @@ namespace MiniShopApp.WebUI.Controllers
                 };
                 _productService.Create(product, categoryIds);
 
-                TempData["Message"] = JobManager.CreateMessage("BİLGİ","Ürün eklenmiştir", "success");
+                TempData["Message"] = JobManager.CreateMessage("BİLGİ","Ürün  eklenmiştir", "success");
                 return RedirectToAction("ProductList");
             }
             //İşler yolunda gitmediyse
